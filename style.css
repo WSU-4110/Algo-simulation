@@ -107,3 +107,38 @@ span.byline {
     margin-top: 3pt;
     display: block;
 }
+
+@media screen and (max-width: 800px) {
+    div.subpage_title {
+        width: 300px;
+        padding-top: 6pt;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    li a img {
+        display: block;
+    }
+    div.subpage_title {
+        padding-top: 6pt;
+        padding-bottom: 10pt;
+        display: block;
+    }
+}
+
+ul {
+    list-style: none;
+    margin-left: 8%;
+    margin-bottom: 25pt;
+}
+
+li {
+    margin-bottom: 15pt;
+}
+
+div.drawing {
+    overflow: auto;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+}
