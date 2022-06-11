@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Bubble Sort</title>
+
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <header>
+    <nav>
+      <div class="array_parameters">
+        <p>Array Size:</p>
+        <input id="size_of_array" type="range" min=5 max=30 step=1 value=20>
+        <button id="create_random_array">Generate a random array</button>
+        <button id="start_sort">Start Bubble Sort</button>
+      </div>
+    </nav>
+
+  </header>
+
+  <section>
+    <div id="array_section">
+    </div>
+  </section>
+
+<section>
+  <div id="log_section">
+    <p id="fifth_box"></p>
+    <p id="fourth_box"></p>
+    <p id="third_box"></p>
+    <p id="second_box"></p>
+    <p id="first_box"></p>
+  </div>
+
+</section>
+<div id="psuedoode_section">
+  <p id="first_psuedocode_box">for i=0 to n-2</p>
+  <p id="second_psuedocode_box">for j=0 to n-2</p>
+  <p id="third_psuedocode_box">if Array[j] > Array[j+1]</p>
+  <p id="fourth_psuedocode_box">swap(Array[j], Array[j+1])</p>
+</div>
+</section>
+<script src="bubblesort.js"></script>
+
+</body>
+</html>
