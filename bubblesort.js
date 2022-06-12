@@ -3,6 +3,18 @@ array_size=array_size_input.value;
 var create_random_array=document.getElementById("create_random_array");
 var start_sorting=document.getElementById("start_sort");
 
+var random_array_button=document.getElementById("random_array");
+var user_array_button=document.getElementById("user_array");
+var array_integer_field=document.getElementById("array_integer");
+var add_integer_button=document.getElementById("add_integer");
+
+var log_box=document.getElementById("log_box");
+var pseudocode_box=document.getElementById("pseudocode_box");
+
+var view_log_button=document.getElementById("view_log");
+var view_pseudocode_button=document.getElementById("view_pseudocode");
+
+
 var first_box=document.getElementById("first_box");
 var second_box=document.getElementById("second_box");
 var third_box=document.getElementById("third_box");
@@ -14,21 +26,60 @@ var second_pseudocode_box=document.getElementById("second_pseudocode_box");
 var third_pseudocode_box=document.getElementById("third_pseudocode_box");
 var fourth_pseudocode_box=document.getElementById("fourth_pseudocode_box");
 
-
+var user_input_array_index = 0;
+var user_input_int=document.getElementById("array_integer");
+var user_int = 0;
 
 var array_bar_sizes=[];
 var array_divs=[];
 
-var teststring="test1";
-var teststring2="test2";
+array_integer_field.disabled=true;
+add_integer_button.disabled=true;
+pseudocode_box.style.display="none";
 
+add_integer_button.addEventListener('click', create_array_user);
 
-var first_string="";
-var second_string="";
-var third_string="";
-var fourth_string="";
-var fifth_string="";
+random_array_button.addEventListener('change', function(e)
+{
+  if (this.checked) {
+    array_section.innerHTML="";
+    array_size=array_size_input.value;
+    array_size_input.disabled=false;
+    create_random_array.disabled=false;
+    array_integer_field.disabled=true;
+    add_integer_button.disabled=true;
 
+  }
+});
+
+user_array_button.addEventListener('change', function(e)
+{
+  if (this.checked) {
+    array_section.innerHTML="";
+    user_input_array_index = 0;
+    array_size=0;
+    array_integer_field.disabled=false;
+    add_integer_button.disabled=false;
+    array_size_input.disabled=true;
+    create_random_array.disabled=true;
+  }
+});
+
+view_log_button.addEventListener('change', function(e)
+{
+  if (this.checked) {
+    pseudocode_box.style.display="none";
+    log_box.style.display="block";
+  }
+});
+
+view_pseudocode_button.addEventListener('change', function(e)
+{
+  if (this.checked) {
+    log_box.style.display="none";
+    pseudocode_box.style.display="block";
+  }
+});
 
 var array_section=document.getElementById("array_section");
 array_section.style="flex-direction:row";
@@ -42,10 +93,33 @@ function create_array()
 
   for(var i = 0; i < array_size; i++)
   {
-    array_bar_sizes[i]=Math.floor(Math.random() * 0.5 *(30)) + 10;
+    array_bar_sizes[i]=Math.floor(Math.random() * 90) + 1;
     array_divs[i]=document.createElement("div");
     array_section.appendChild(array_divs[i]);
     array_divs[i].style=" margin: 0% 0.1%; background-color:blue; width:" + (100/array_size-0.2) + "%; height:" + (array_bar_sizes[i]) + "%;";
+  }
+}
+
+function create_array_user()
+{
+  array_integer_field=document.getElementById("array_integer");
+
+  user_int=parseInt(array_integer_field.value);
+
+  if(Number.isInteger(user_int) && user_int > 0)
+  {
+
+    array_bar_sizes[user_input_array_index]=user_int;
+    array_size++;
+    user_input_array_index++;
+
+    array_section.innerHTML="";
+    for(var i = 0; i < array_size; i++)
+    {
+      array_divs[i]=document.createElement("div");
+      array_section.appendChild(array_divs[i]);
+      array_divs[i].style=" margin: 0% 0.1%; background-color:blue; width:" + (100/array_size-0.2) + "%; height:" + (array_bar_sizes[i]) + "%;";
+    }
   }
 }
 
@@ -64,6 +138,11 @@ function disable_buttons()
   array_size_input.disabled=true;
   create_random_array.disabled=true;
   start_sorting.disabled=true;
+  array_integer_field.disabled=true;
+  add_integer_button.disabled=true;
+  random_array_button.disabled=true;
+  user_array_button.disabled=true;
+
 }
 
 var delay=100
@@ -79,9 +158,20 @@ function update_div(section, height, color)
 function enable_buttons()
 {
   window.setTimeout(function(){
+    random_array_button.disabled=false;
+    user_array_button.disabled=false;
+    if(random_array_button.checked)
+    {
     array_size_input.disabled=false;
     create_random_array.disabled=false;
     start_sorting.disabled=false;
+  }
+  else if(user_array_button.checked)
+  {
+    array_integer_field.disabled=false;
+    add_integer_button.disabled=false;
+    start_sorting.disabled=false;
+  }
   },c_delay+=delay);
 }
 
@@ -122,8 +212,9 @@ function bubble_sort()
     update_pseudocode1();
     update_div(array_divs[j], array_bar_sizes[j], "green");
   }
-  update_div(array_divs[0], array_bar_sizes[0], "green");
 
+  update_div(array_divs[0], array_bar_sizes[0], "green");
+  finish_pseudocode();
   enable_buttons();
 }
 
@@ -131,11 +222,7 @@ function bubble_sort()
 function update_log1(size1, size2)
 {
   window.setTimeout(function(){
-    update_log_strings();
-    fifth_box.innerHTML=fourth_box.innerHTML;
-    fourth_box.innerHTML=third_box.innerHTML;
-    third_box.innerHTML=second_box.innerHTML;
-    second_box.innerHTML=first_box.innerHTML;
+    step_log();
     first_box.innerHTML="Comparing size " + size1 + " with size " + size2 + ".";
 
 
@@ -145,39 +232,26 @@ function update_log1(size1, size2)
 function update_log2(size1, size2)
 {
   window.setTimeout(function(){
-    update_log_strings();
-    fifth_box.innerHTML=fourth_box.innerHTML;
-    fourth_box.innerHTML=third_box.innerHTML;
-    third_box.innerHTML=second_box.innerHTML;
-    second_box.innerHTML=first_box.innerHTML;
+    step_log();
     first_box.innerHTML="Swapping size " + size1 + " with size " + size2 + ".";
 
 
   },c_delay+=delay);
 }
 
-function update_log_strings()
-{
-  fifth_string=fourth_string;
-  fourth_string=third_string;
-  third_string=second_string;
-  second_string=first_string;
-
-}
 function reset_pseudocode()
 {
- first_psuedocode_box.style="background-color:white;";
- second_psuedocode_box.style="background-color:white;";
- third_psuedocode_box.style="background-color:white;";
- fourth_psuedocode_box.style="background-color:white;";
-
+ first_pseudocode_box.style="background-color:#f5ef4e;";
+ second_pseudocode_box.style="background-color:#f5ef4e;";
+ third_pseudocode_box.style="background-color:#f5ef4e;";
+ fourth_pseudocode_box.style="background-color:#f5ef4e;";
 }
 
 function update_pseudocode1()
 {
   window.setTimeout(function(){
     reset_pseudocode();
-    first_psuedocode_box.style="background-color:green;";
+    first_pseudocode_box.style="background-color:#ffff66;";
   },c_delay+=delay);
 }
 
@@ -185,7 +259,7 @@ function update_pseudocode2()
 {
   window.setTimeout(function(){
     reset_pseudocode();
-    second_psuedocode_box.style="background-color:green;";
+    second_pseudocode_box.style="background-color:#ffff66;";
   },c_delay+=delay);
 }
 
@@ -193,7 +267,7 @@ function update_pseudocode3()
 {
   window.setTimeout(function(){
     reset_pseudocode();
-    third_psuedocode_box.style="background-color:green;";
+    third_pseudocode_box.style="background-color:#ffff66;";
   },c_delay+=delay);
 }
 
@@ -201,18 +275,27 @@ function update_pseudocode4()
 {
   window.setTimeout(function(){
     reset_pseudocode();
-    fourth_psuedocode_box.style="background-color:green;";
+    fourth_pseudocode_box.style="background-color:#ffff66;";
   },c_delay+=delay);
 }
 
-function clear_log()
+function finish_pseudocode()
 {
-  first_box.innerHTMl="";
-  second_box.innerHTMl="";
-  third_box.innerHTMl="";
-  fourth_box.innerHTMl="";
-  fifth_box.innerHTMl="";
+  window.setTimeout(function(){
+    reset_pseudocode();
+    first_pseudocode_box.style="background-color:#f5ef4e;";
+  },c_delay+=delay);
 }
+
+
+function step_log()
+{
+  fifth_box.innerHTML=fourth_box.innerHTML;
+  fourth_box.innerHTML=third_box.innerHTML;
+  third_box.innerHTML=second_box.innerHTML;
+  second_box.innerHTML=first_box.innerHTML;
+}
+
 function run_sorting_algorithm()
 {
   disable_buttons();
