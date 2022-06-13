@@ -25,8 +25,9 @@
                 <input type = "text" id = "username" placeholder = "Enter a username" class = "form-control mb-3"/>
                 <input type = "text" id = "email"  placeholder = "Enter email" class = "form-control mb-3"/>
                 <input type = "password" id = "password"  placeholder="Enter password" class = "form-control mb-3"/>
+                <input type = "password" id = "password2"  placeholder="Confirm password" class = "form-control mb-3"/>
                 <button type = "text" id = "sub_btn"  class = "btn w-100 btn-outline-primary mb-3">Register</button>
-                <a href = "testlogin2.html" class = "badge badge-secondary py-1 w-100"> Already have an account? </a>
+                <a href = "testlogin4.html" class = "badge badge-secondary py-1 w-100"> Already have an account? </a>
             </div>
     
 
@@ -34,6 +35,8 @@
                 // Import the functions you need from the SDKs you need
                 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
                 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-analytics.js";
+                import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-auth.js";
+                import { getDatabase, ref, set, child, get } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js";
                 // TODO: Add SDKs for Firebase products that you want to use
                 // https://firebase.google.com/docs/web/setup#available-libraries
               
@@ -55,21 +58,38 @@
     // ----------------------------REFERENCES--------------------------------//
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
-
-    import { getDatabase, ref, set, child, get } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js";
-
     const db = getDatabase();
     const analytics = getAnalytics(app);
     const email = document.getElementById("email");
     const name = document.getElementById('name');
     const username = document.getElementById("username");
     const password = document.getElementById("password");
+    const password2 = document.getElementById("password2");
     const submit = document.getElementById("sub_btn");
+    const auth = getAuth();
 
     //-------------------------VALIDATION-----------------------------------------//
-
     function isEmptyOrSpaces(str){
         return str ===null || str.match(/^ *$/) !== null;
+    }
+
+    function registerFirebaseAuth(){
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var name = document.getElementById('name').value;
+        var username = document.getElementById('username').value;
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+        // Signed in 
+            const user = userCredential.user;
+            writeUserData(user, email, name, username);
+            })
+            .catch((error)=> {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+
+                alert(errorMessage);
+            })
     }
 
     function Validation(){
@@ -102,18 +122,33 @@
         if (!Validation()){
             return;
         };
+
+        var pw1 = document.getElementById("password").value;  
+        var pw2 = document.getElementById("password2").value;  
+        if(pw1 != pw2)  
+        {   
+            alert("Passwords did not match");
+            return;
+        }
+        registerFirebaseAuth();
+    }
+
+
+    function writeUserData(userId, email, name, username) {
+        
+        const db = getDatabase();
         const dbRef = ref(db);
 
-        get(child(dbRef, "UsersList/"+ username.value)).then((snapshot)=>{
+        get(child(dbRef, "UsersList/"+ userId.uid)).then((snapshot)=>{
             if(snapshot.exists()){
                 alert("Account already exists.");
             }
             else{
-                set(ref(db, "UsersList/" + username.value),
-                {
-                    fullname: name.value,
-                    email: email.value,
-                    username: username.value,
+                set(ref(db, "UsersList/" + userId.uid),{
+                    fullname: name,
+                    UID: userId.uid,
+                    username: username,
+                    email: email,
                     password: encPass()
                 })
                 .then(()=>{
@@ -124,8 +159,7 @@
                 })
             }
         });
-        alert("test");
-    }
+        }
 
 //----------------------------ENCRYPT ----------------------------------------//
 

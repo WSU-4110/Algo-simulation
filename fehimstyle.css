@@ -44,7 +44,7 @@ img{
 .navbar{
     background-color: var(--primary-color);
     color: #fff;
-    height: 70px;
+    height: 100px;
 
 }
 
@@ -66,72 +66,6 @@ img{
     justify-content: space-between;
 }
 
-
-/* SHOWCASE */
-
-.showcase{
-    height: 400px;
-    background-color: var(--primary-color);
-    color: #fff;
-    position: relative;
-
-}
-
-.showcase h1{
-    font-size: 40px;
-}
-
-.showcase p{
-    margin: 20px 0;
-}
-
-.showcase .grid{
-    overflow: visible;
-    grid-template-columns: 55% 45%;
-    gap: 30px;
-}
-
-.showcase-form{
-    position: relative;
-    top: 60px;
-    height: 350px;
-    width: 400px;
-    padding: 40px;
-    z-index: 100;
-}
-
-.showcase-form .form-control{
-    margin: 30px 0;
-}
-
-.showcase-form input[type = "text"],
-.showcase-form input[type = "email"]{
-    border: 0;
-    border-bottom: 1px solid #b4becb;
-    width: 100%;
-    padding: 3px;
-    font-size: 16px;
-
-}
-
-.showcase-form input:focus{
-    outline: none;
-
-}
-
-.showcase::before, .showcase::after{
-    content: "";
-    position: absolute;
-    height: 100px;
-    bottom: -70px;
-    right: 0;
-    left: 0;
-    background: white;
-    transform: skewY(-3deg);
-    -webkit-transform: skewY(-3deg);
-    -moz-transform: skewY(-3deg);
-    -ms-transform: skewY(-3deg);
-}
 
 /* STATS */
 .stats{
@@ -166,95 +100,6 @@ img{
     grid-row: 1 / span 2;
 }
 
-/* MODAL LOGIN */
-
-input[type=text],
-    input[type=password] {
-        width: 100%;
-        padding: 12px 20px;
-        margin: 8px 0;
-        display: inline-block;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-    }
-   
-    /*set a style for the buttons*/
-    button {
-        background-color: #4CAF50;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-    }
-   
-    /* set a hover effect for the button*/
-    button:hover {
-        opacity: 0.8;
-    }
-   
-    /*set extra style for the cancel button*/
-    .cancelbtn {
-        width: auto;
-        padding: 10px 18px;
-        background-color: #f44336;
-    }
-   
-    /*centre the display image inside the container*/
-    .imgcontainer {
-        text-align: center;
-        margin: 24px 0 12px 0;
-        position: relative;
-    }
-   
-    /*set image properties*/
-    img.avatar {
-        width: 40%;
-        border-radius: 50%;
-    }
-   
-    /*set padding to the container*/
-    .container {
-        padding: 16px;
-    }
-     
-    /*set the forgot password text*/
-    span.psw {
-        float: right;
-        padding-top: 16px;
-    }
-   
-    /*set the Modal background*/
-    .modal {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 600px;
-        max-width: 100%;
-        height: 400px;
-        max-height: 100%;
-        z-index: 1010;
-      }
-
-    .modal-content{
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        padding: 20px 20px 20px 20px;
-        overflow: auto;
-    }
-    .modal-overlay{
-        z-index: 1000;
-        position: fixed;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-    }
 
 
 /* CLOUD */
@@ -273,6 +118,8 @@ input[type=text],
     text-align: center;
     margin: 18px 10px 40px;
     transition: transform 0.2 ease-in;
+    min-width: 259px;
+    min-height: 200px;
 }
 
 .languages .card h4{
