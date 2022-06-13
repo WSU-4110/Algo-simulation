@@ -8,6 +8,7 @@ var user_array_button=document.getElementById("user_array");
 var array_integer_field=document.getElementById("array_integer");
 var add_integer_button=document.getElementById("add_integer");
 
+
 var log_box=document.getElementById("log_box");
 var pseudocode_box=document.getElementById("pseudocode_box");
 
@@ -35,7 +36,9 @@ var array_divs=[];
 
 array_integer_field.disabled=true;
 add_integer_button.disabled=true;
+
 pseudocode_box.style.display="none";
+
 
 add_integer_button.addEventListener('click', create_array_user);
 
@@ -65,6 +68,7 @@ user_array_button.addEventListener('change', function(e)
   }
 });
 
+
 view_log_button.addEventListener('change', function(e)
 {
   if (this.checked) {
@@ -80,6 +84,7 @@ view_pseudocode_button.addEventListener('change', function(e)
     pseudocode_box.style.display="block";
   }
 });
+
 
 var array_section=document.getElementById("array_section");
 array_section.style="flex-direction:row";
@@ -241,10 +246,12 @@ function update_log2(size1, size2)
 
 function reset_pseudocode()
 {
+
  first_pseudocode_box.style="background-color:#f5ef4e;";
  second_pseudocode_box.style="background-color:#f5ef4e;";
  third_pseudocode_box.style="background-color:#f5ef4e;";
  fourth_pseudocode_box.style="background-color:#f5ef4e;";
+
 }
 
 function update_pseudocode1()
@@ -259,6 +266,7 @@ function update_pseudocode2()
 {
   window.setTimeout(function(){
     reset_pseudocode();
+
     second_pseudocode_box.style="background-color:#ffff66;";
   },c_delay+=delay);
 }
