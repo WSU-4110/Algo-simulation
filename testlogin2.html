@@ -73,6 +73,7 @@
             if(snapshot.exists()){
                 let dbpass = decPass(snapshot.val().password);
                 if(dbpass == password.value){
+                    alert("SUCCESS");
                     login(snapshot.val());
                 }
                 else{
@@ -98,13 +99,13 @@
 
         if(!keepLoggedIn){
             sessionStorage.setItem('user', JSON.stringify(user));
-            window.location = "home.html";
+            window.location = "fehimindex2.html";
         }
 
         else{
             localStorage.setItem('keepLoggedIn', 'yes');
             localStorage.setItem('user', JSON.stringify(user));
-            window.location = "home.html";
+            window.location = "fehimindex2.html";
         }
     }
 

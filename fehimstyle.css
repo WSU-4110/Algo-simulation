@@ -45,7 +45,7 @@ img {
 .navbar {
     background-color: var(--primary-color);
     color: #fff;
-    height: 70px;
+    height: 100px;
 }
 
 .navbar ul {
@@ -184,19 +184,6 @@ img#home {
 }
 
 
-/* MODAL LOGIN */
-
-input[type=text],
-input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-
 /*set a style for the buttons*/
 
 button {
@@ -309,6 +296,8 @@ span.psw {
     text-align: center;
     margin: 18px 10px 40px;
     transition: transform 0.2 ease-in;
+    min-width: 259px;
+    min-height: 200px;
 }
 
 .Algorithms .card h3 {
