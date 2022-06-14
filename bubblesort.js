@@ -32,7 +32,13 @@ var user_input_int=document.getElementById("array_integer");
 var user_int = 0;
 
 var array_bar_sizes=[];
-var array_divs=[];
+
+class Element {
+  constructor(size, div) {
+    this.size = size;
+    this.div = div;
+  }
+}
 
 array_integer_field.disabled=true;
 add_integer_button.disabled=true;
@@ -98,10 +104,14 @@ function create_array()
 
   for(var i = 0; i < array_size; i++)
   {
-    array_bar_sizes[i]=Math.floor(Math.random() * 90) + 1;
-    array_divs[i]=document.createElement("div");
-    array_section.appendChild(array_divs[i]);
-    array_divs[i].style=" margin: 0% 0.1%; background-color:blue; width:" + (100/array_size-0.2) + "%; height:" + (array_bar_sizes[i]) + "%;";
+
+    array_bar_sizes[i] = new Element (
+      Math.floor(Math.random() * 90) + 1,
+      document.createElement("div")
+    )
+
+    array_section.appendChild(array_bar_sizes[i].div);
+    array_bar_sizes[i].div.style=" margin: 0% 0.1%; background-color:blue; width:" + (100/array_size-0.2) + "%; height:" + (array_bar_sizes[i].size) + "%;";
   }
 }
 
@@ -114,16 +124,16 @@ function create_array_user()
   if(Number.isInteger(user_int) && user_int > 0)
   {
 
-    array_bar_sizes[user_input_array_index]=user_int;
+    array_bar_sizes[user_input_array_index].size=user_int;
     array_size++;
     user_input_array_index++;
 
     array_section.innerHTML="";
     for(var i = 0; i < array_size; i++)
     {
-      array_divs[i]=document.createElement("div");
-      array_section.appendChild(array_divs[i]);
-      array_divs[i].style=" margin: 0% 0.1%; background-color:blue; width:" + (100/array_size-0.2) + "%; height:" + (array_bar_sizes[i]) + "%;";
+      array_bar_sizes[i].div=document.createElement("div");
+      array_section.appendChild(array_bar_sizes[i].div);
+      array_bar_sizes[i].div.style=" margin: 0% 0.1%; background-color:blue; width:" + (100/array_size-0.2) + "%; height:" + (array_bar_sizes[i].size) + "%;";
     }
   }
 }
@@ -189,36 +199,35 @@ function bubble_sort()
     for(var j=0; j<array_size-i-1;j++)
     {
       update_pseudocode2();
-      update_div(array_divs[j],array_bar_sizes[j], "yellow");//Color updated
-      update_log1(array_bar_sizes[j], array_bar_sizes[j+1]);
+      update_div(array_bar_sizes[j].div,array_bar_sizes[j].size, "yellow");//Color updated
+      update_log1(array_bar_sizes[j].size, array_bar_sizes[j+1].size);
 
-      //write_output1(div_sizes[j], div_sizes[j+1]);
-      if(array_bar_sizes[j]>array_bar_sizes[j+1])
+      if(array_bar_sizes[j].size>array_bar_sizes[j+1].size)
       {
 
         update_pseudocode3();
-        update_log2(array_bar_sizes[j], array_bar_sizes[j+1]);
-        update_div(array_divs[j], array_bar_sizes[j], "red");
-        update_div(array_divs[j+1],array_bar_sizes[j+1], "red");
+        update_log2(array_bar_sizes[j].size, array_bar_sizes[j+1].size);
+        update_div(array_bar_sizes[j].div, array_bar_sizes[j].size, "red");
+        update_div(array_bar_sizes[j+1].div,array_bar_sizes[j+1].size, "red");
 
         update_pseudocode4();
-        var temp=array_bar_sizes[j];
-        array_bar_sizes[j]=array_bar_sizes[j+1];
-        array_bar_sizes[j+1]=temp;
+        var tempSize = array_bar_sizes[j].size;
+        array_bar_sizes[j].size = array_bar_sizes[j+1].size;
 
-        update_div(array_divs[j], array_bar_sizes[j], "red");
-        update_div(array_divs[j+1], array_bar_sizes[j+1], "red");
-        //write_output2("2", "2");
+        array_bar_sizes[j+1].size = tempSize;
+
+        update_div(array_bar_sizes[j].div, array_bar_sizes[j].size, "red");
+        update_div(array_bar_sizes[j+1].div, array_bar_sizes[j+1].size, "red");
 
       }
       update_pseudocode2();
-      update_div(array_divs[j], array_bar_sizes[j], "blue");
+      update_div(array_bar_sizes[j].div, array_bar_sizes[j].size, "blue");
     }
     update_pseudocode1();
-    update_div(array_divs[j], array_bar_sizes[j], "green");
+    update_div(array_bar_sizes[j].div, array_bar_sizes[j].size, "green");
   }
 
-  update_div(array_divs[0], array_bar_sizes[0], "green");
+  update_div(array_bar_sizes[0].div, array_bar_sizes[0].size, "green");
   finish_pseudocode();
   enable_buttons();
 }
