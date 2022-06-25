@@ -8,43 +8,38 @@ var user_array_button=document.getElementById("user_array");
 var array_integer_field=document.getElementById("array_integer");
 var add_integer_button=document.getElementById("add_integer");
 
-
 var log_box=document.getElementById("log_box");
 var pseudocode_box=document.getElementById("pseudocode_box");
 
 var view_log_button=document.getElementById("view_log");
 var view_pseudocode_button=document.getElementById("view_pseudocode");
 
+//for log box
+var firstLogBox=document.getElementById("first_box");
+var secondLogBox=document.getElementById("second_box");
+var thirdLogBox=document.getElementById("third_box");
+var fourthLogBox=document.getElementById("fourth_box");
+var fifthLogBox=document.getElementById("fifth_box");
+//for pseudocode box
+var firstPseudoCodeBox=document.getElementById("first_pseudocode_box");
+var secondPseudoCodeBox=document.getElementById("second_pseudocode_box");
+var thirdPseudoCodeBox=document.getElementById("third_pseudocode_box");
+var fourthPseudoCodeBox=document.getElementById("fourth_pseudocode_box");
 
-var first_box=document.getElementById("first_box");
-var second_box=document.getElementById("second_box");
-var third_box=document.getElementById("third_box");
-var fourth_box=document.getElementById("fourth_box");
-var fifth_box=document.getElementById("fifth_box");
-
-var first_pseudocode_box=document.getElementById("first_pseudocode_box");
-var second_pseudocode_box=document.getElementById("second_pseudocode_box");
-var third_pseudocode_box=document.getElementById("third_pseudocode_box");
-var fourth_pseudocode_box=document.getElementById("fourth_pseudocode_box");
+//log and pseudocode objects
+let pseudoCodeBox = new PseudoBox(firstPseudoCodeBox, secondPseudoCodeBox, thirdPseudoCodeBox, fourthPseudoCodeBox);
+let logBox = new LogBox(firstLogBox, secondLogBox, thirdLogBox, fourthLogBox, fifthLogBox);
 
 var user_input_array_index = 0;
 var user_input_int=document.getElementById("array_integer");
 var user_int = 0;
 
 var array_bar_sizes=[];
-
-class Element {
-  constructor(size, div) {
-    this.size = size;
-    this.div = div;
-  }
-}
+var array_divs=[];
 
 array_integer_field.disabled=true;
 add_integer_button.disabled=true;
-
 pseudocode_box.style.display="none";
-
 
 add_integer_button.addEventListener('click', create_array_user);
 
@@ -74,7 +69,6 @@ user_array_button.addEventListener('change', function(e)
   }
 });
 
-
 view_log_button.addEventListener('change', function(e)
 {
   if (this.checked) {
@@ -91,7 +85,6 @@ view_pseudocode_button.addEventListener('change', function(e)
   }
 });
 
-
 var array_section=document.getElementById("array_section");
 array_section.style="flex-direction:row";
 
@@ -104,14 +97,10 @@ function create_array()
 
   for(var i = 0; i < array_size; i++)
   {
-
-    array_bar_sizes[i] = new Element (
-      Math.floor(Math.random() * 90) + 1,
-      document.createElement("div")
-    )
-
-    array_section.appendChild(array_bar_sizes[i].div);
-    array_bar_sizes[i].div.style=" margin: 0% 0.1%; background-color:blue; width:" + (100/array_size-0.2) + "%; height:" + (array_bar_sizes[i].size) + "%;";
+    array_bar_sizes[i]=Math.floor(Math.random() * 90) + 1;
+    array_divs[i]=document.createElement("div");
+    array_section.appendChild(array_divs[i]);
+    array_divs[i].style=" margin: 0% 0.1%; background-color:blue; width:" + (100/array_size-0.2) + "%; height:" + (array_bar_sizes[i]) + "%;";
   }
 }
 
@@ -124,16 +113,16 @@ function create_array_user()
   if(Number.isInteger(user_int) && user_int > 0)
   {
 
-    array_bar_sizes[user_input_array_index].size=user_int;
+    array_bar_sizes[user_input_array_index]=user_int;
     array_size++;
     user_input_array_index++;
 
     array_section.innerHTML="";
     for(var i = 0; i < array_size; i++)
     {
-      array_bar_sizes[i].div=document.createElement("div");
-      array_section.appendChild(array_bar_sizes[i].div);
-      array_bar_sizes[i].div.style=" margin: 0% 0.1%; background-color:blue; width:" + (100/array_size-0.2) + "%; height:" + (array_bar_sizes[i].size) + "%;";
+      array_divs[i]=document.createElement("div");
+      array_section.appendChild(array_divs[i]);
+      array_divs[i].style=" margin: 0% 0.1%; background-color:blue; width:" + (100/array_size-0.2) + "%; height:" + (array_bar_sizes[i]) + "%;";
     }
   }
 }
@@ -160,19 +149,19 @@ function disable_buttons()
 
 }
 
-var delay=100
+var delay=200;
 var c_delay=0;
 
 function update_div(section, height, color)
 {
-  window.setTimeout(function(){
+  setTimeout(function(){
     section.style=" margin:0% 0.1%; width:"+ (100/array_size-0.2) + "%; height:" + height + "%; background-color:" + color + ";";
   },c_delay+=delay);
 }
 
 function enable_buttons()
 {
-  window.setTimeout(function(){
+  setTimeout(function(){
     random_array_button.disabled=false;
     user_array_button.disabled=false;
     if(random_array_button.checked)
@@ -190,131 +179,52 @@ function enable_buttons()
   },c_delay+=delay);
 }
 
-function bubble_sort()
+function bubble_sort(pseudoCodeBox, logBox)
 {
   c_delay=0;
   for(var i=0; i<array_size-1; i++)
   {
-    update_pseudocode1();
+    pseudoCodeBox.updatePseudoCode(1, c_delay+=delay);
     for(var j=0; j<array_size-i-1;j++)
     {
-      update_pseudocode2();
-      update_div(array_bar_sizes[j].div,array_bar_sizes[j].size, "yellow");//Color updated
-      update_log1(array_bar_sizes[j].size, array_bar_sizes[j+1].size);
+      pseudoCodeBox.updatePseudoCode(2, c_delay+=delay);
+      update_div(array_divs[j],array_bar_sizes[j], "yellow");
+      logBox.updateLogBox(array_bar_sizes[j], array_bar_sizes[j+1], "Comparing", c_delay+=delay);
 
-      if(array_bar_sizes[j].size>array_bar_sizes[j+1].size)
+
+      if(array_bar_sizes[j]>array_bar_sizes[j+1])
       {
 
-        update_pseudocode3();
-        update_log2(array_bar_sizes[j].size, array_bar_sizes[j+1].size);
-        update_div(array_bar_sizes[j].div, array_bar_sizes[j].size, "red");
-        update_div(array_bar_sizes[j+1].div,array_bar_sizes[j+1].size, "red");
+        pseudoCodeBox.updatePseudoCode(3, c_delay+=delay);
+        logBox.updateLogBox(array_bar_sizes[j], array_bar_sizes[j+1], "Swapping", c_delay+=delay);
+        update_div(array_divs[j], array_bar_sizes[j], "red");
+        update_div(array_divs[j+1],array_bar_sizes[j+1], "red");
 
-        update_pseudocode4();
-        var tempSize = array_bar_sizes[j].size;
-        array_bar_sizes[j].size = array_bar_sizes[j+1].size;
+        pseudoCodeBox.updatePseudoCode(4, c_delay+=delay);
+        var temp=array_bar_sizes[j];
+        array_bar_sizes[j]=array_bar_sizes[j+1];
+        array_bar_sizes[j+1]=temp;
 
-        array_bar_sizes[j+1].size = tempSize;
+        update_div(array_divs[j], array_bar_sizes[j], "red");
+        update_div(array_divs[j+1], array_bar_sizes[j+1], "red");
 
-        update_div(array_bar_sizes[j].div, array_bar_sizes[j].size, "red");
-        update_div(array_bar_sizes[j+1].div, array_bar_sizes[j+1].size, "red");
 
       }
-      update_pseudocode2();
-      update_div(array_bar_sizes[j].div, array_bar_sizes[j].size, "blue");
+      pseudoCodeBox.updatePseudoCode(2, c_delay+=delay);
+      update_div(array_divs[j], array_bar_sizes[j], "blue");
     }
-    update_pseudocode1();
-    update_div(array_bar_sizes[j].div, array_bar_sizes[j].size, "green");
+    pseudoCodeBox.updatePseudoCode(1, c_delay+=delay);
+    update_div(array_divs[j], array_bar_sizes[j], "green");
   }
 
-  update_div(array_bar_sizes[0].div, array_bar_sizes[0].size, "green");
-  finish_pseudocode();
+  update_div(array_divs[0], array_bar_sizes[0], "green");
+  pseudoCodeBox.updatePseudoCode(1, c_delay+=delay);
   enable_buttons();
 }
 
 
-function update_log1(size1, size2)
-{
-  window.setTimeout(function(){
-    step_log();
-    first_box.innerHTML="Comparing size " + size1 + " with size " + size2 + ".";
-
-
-  },c_delay+=delay);
-}
-
-function update_log2(size1, size2)
-{
-  window.setTimeout(function(){
-    step_log();
-    first_box.innerHTML="Swapping size " + size1 + " with size " + size2 + ".";
-
-
-  },c_delay+=delay);
-}
-
-function reset_pseudocode()
-{
-
- first_pseudocode_box.style="background-color:#f5ef4e;";
- second_pseudocode_box.style="background-color:#f5ef4e;";
- third_pseudocode_box.style="background-color:#f5ef4e;";
- fourth_pseudocode_box.style="background-color:#f5ef4e;";
-
-}
-
-function update_pseudocode1()
-{
-  window.setTimeout(function(){
-    reset_pseudocode();
-    first_pseudocode_box.style="background-color:#ffff66;";
-  },c_delay+=delay);
-}
-
-function update_pseudocode2()
-{
-  window.setTimeout(function(){
-    reset_pseudocode();
-
-    second_pseudocode_box.style="background-color:#ffff66;";
-  },c_delay+=delay);
-}
-
-function update_pseudocode3()
-{
-  window.setTimeout(function(){
-    reset_pseudocode();
-    third_pseudocode_box.style="background-color:#ffff66;";
-  },c_delay+=delay);
-}
-
-function update_pseudocode4()
-{
-  window.setTimeout(function(){
-    reset_pseudocode();
-    fourth_pseudocode_box.style="background-color:#ffff66;";
-  },c_delay+=delay);
-}
-
-function finish_pseudocode()
-{
-  window.setTimeout(function(){
-    reset_pseudocode();
-    first_pseudocode_box.style="background-color:#f5ef4e;";
-  },c_delay+=delay);
-}
-
-
-function step_log()
-{
-  fifth_box.innerHTML=fourth_box.innerHTML;
-  fourth_box.innerHTML=third_box.innerHTML;
-  third_box.innerHTML=second_box.innerHTML;
-  second_box.innerHTML=first_box.innerHTML;
-}
-
 function run_sorting_algorithm()
 {
   disable_buttons();
-  bubble_sort();
+  bubble_sort(pseudoCodeBox, logBox);
 }
