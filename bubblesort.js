@@ -29,13 +29,19 @@ var fourthPseudoCodeBox=document.getElementById("fourth_pseudocode_box");
 //log and pseudocode objects
 let pseudoCodeBox = new PseudoBox(firstPseudoCodeBox, secondPseudoCodeBox, thirdPseudoCodeBox, fourthPseudoCodeBox);
 let logBox = new LogBox(firstLogBox, secondLogBox, thirdLogBox, fourthLogBox, fifthLogBox);
+let newArray = [];
 
 var user_input_array_index = 0;
 var user_input_int=document.getElementById("array_integer");
 var user_int = 0;
 
-var array_bar_sizes=[];
-var array_divs=[];
+var arrayBarSizes=[];
+var arrayDivElements=[];
+
+var arraySection=document.getElementById("array_section");
+arraySection.style="flex-direction:row";
+
+let sortingArray = new SortingArray(arrayBarSizes, arrayDivElements, array_size, arraySection);
 
 array_integer_field.disabled=true;
 add_integer_button.disabled=true;
@@ -46,6 +52,7 @@ add_integer_button.addEventListener('click', create_array_user);
 random_array_button.addEventListener('change', function(e)
 {
   if (this.checked) {
+    newArray=[]
     array_section.innerHTML="";
     array_size=array_size_input.value;
     array_size_input.disabled=false;
@@ -59,6 +66,7 @@ random_array_button.addEventListener('change', function(e)
 user_array_button.addEventListener('change', function(e)
 {
   if (this.checked) {
+    newArray = [];
     array_section.innerHTML="";
     user_input_array_index = 0;
     array_size=0;
@@ -85,27 +93,25 @@ view_pseudocode_button.addEventListener('change', function(e)
   }
 });
 
-var array_section=document.getElementById("array_section");
-array_section.style="flex-direction:row";
 
 create_random_array.addEventListener("click", create_array);
 array_size_input.addEventListener("input", change_array_size);
 
 function create_array()
 {
-  array_section.innerHTML="";
-
   for(var i = 0; i < array_size; i++)
   {
-    array_bar_sizes[i]=Math.floor(Math.random() * 90) + 1;
-    array_divs[i]=document.createElement("div");
-    array_section.appendChild(array_divs[i]);
-    array_divs[i].style=" margin: 0% 0.1%; background-color:blue; width:" + (100/array_size-0.2) + "%; height:" + (array_bar_sizes[i]) + "%;";
+    newArray[i]=Math.floor(Math.random() * 90) + 1;
   }
+
+  sortingArray.setArraySize(array_size);
+  sortingArray.setArrayBarSizes(newArray);
+  sortingArray.generateArrayElements();
 }
 
 function create_array_user()
 {
+
   array_integer_field=document.getElementById("array_integer");
 
   user_int=parseInt(array_integer_field.value);
@@ -113,24 +119,20 @@ function create_array_user()
   if(Number.isInteger(user_int) && user_int > 0)
   {
 
-    array_bar_sizes[user_input_array_index]=user_int;
+    newArray[user_input_array_index]=user_int;
     array_size++;
     user_input_array_index++;
 
-    array_section.innerHTML="";
-    for(var i = 0; i < array_size; i++)
-    {
-      array_divs[i]=document.createElement("div");
-      array_section.appendChild(array_divs[i]);
-      array_divs[i].style=" margin: 0% 0.1%; background-color:blue; width:" + (100/array_size-0.2) + "%; height:" + (array_bar_sizes[i]) + "%;";
-    }
+    sortingArray.setArraySize(array_size);
+    sortingArray.setArrayBarSizes(newArray);
+    sortingArray.generateArrayElements();
   }
 }
 
 function change_array_size()
 {
   array_size=array_size_input.value;
-  create_array();
+  create_array(sortingArray);
 }
 
 window.onload=change_array_size();
@@ -149,15 +151,8 @@ function disable_buttons()
 
 }
 
-var delay=200;
+var delay=70;
 var c_delay=0;
-
-function update_div(section, height, color)
-{
-  setTimeout(function(){
-    section.style=" margin:0% 0.1%; width:"+ (100/array_size-0.2) + "%; height:" + height + "%; background-color:" + color + ";";
-  },c_delay+=delay);
-}
 
 function enable_buttons()
 {
@@ -179,7 +174,7 @@ function enable_buttons()
   },c_delay+=delay);
 }
 
-function bubble_sort(pseudoCodeBox, logBox)
+function bubble_sort(pseudoCodeBox, logBox, sortingArray)
 {
   c_delay=0;
   for(var i=0; i<array_size-1; i++)
@@ -188,36 +183,34 @@ function bubble_sort(pseudoCodeBox, logBox)
     for(var j=0; j<array_size-i-1;j++)
     {
       pseudoCodeBox.updatePseudoCode(2, c_delay+=delay);
-      update_div(array_divs[j],array_bar_sizes[j], "yellow");
-      logBox.updateLogBox(array_bar_sizes[j], array_bar_sizes[j+1], "Comparing", c_delay+=delay);
+      sortingArray.updateDivElement(j, "yellow", c_delay+=delay);
+      logBox.updateLogBox(sortingArray.arrayBarSizes[j], sortingArray.arrayBarSizes[j+1], "Comparing", c_delay+=delay);
 
 
-      if(array_bar_sizes[j]>array_bar_sizes[j+1])
+      if(sortingArray.arrayBarSizes[j]>sortingArray.arrayBarSizes[j+1])
       {
 
         pseudoCodeBox.updatePseudoCode(3, c_delay+=delay);
-        logBox.updateLogBox(array_bar_sizes[j], array_bar_sizes[j+1], "Swapping", c_delay+=delay);
-        update_div(array_divs[j], array_bar_sizes[j], "red");
-        update_div(array_divs[j+1],array_bar_sizes[j+1], "red");
+        logBox.updateLogBox(sortingArray.arrayBarSizes[j], sortingArray.arrayBarSizes[j+1], "Swapping", c_delay+=delay);
+        sortingArray.updateDivElement(j, "red", c_delay+=delay);
+        sortingArray.updateDivElement(j+1, "red", c_delay+=delay);
 
         pseudoCodeBox.updatePseudoCode(4, c_delay+=delay);
-        var temp=array_bar_sizes[j];
-        array_bar_sizes[j]=array_bar_sizes[j+1];
-        array_bar_sizes[j+1]=temp;
 
-        update_div(array_divs[j], array_bar_sizes[j], "red");
-        update_div(array_divs[j+1], array_bar_sizes[j+1], "red");
+        sortingArray.swapDivElements(j, j+1);
+
+        sortingArray.updateDivElement(j, "red", c_delay+=delay);
+        sortingArray.updateDivElement(j+1, "red", c_delay+=delay);
 
 
       }
       pseudoCodeBox.updatePseudoCode(2, c_delay+=delay);
-      update_div(array_divs[j], array_bar_sizes[j], "blue");
+      sortingArray.updateDivElement(j, "blue", c_delay+=delay);
     }
     pseudoCodeBox.updatePseudoCode(1, c_delay+=delay);
-    update_div(array_divs[j], array_bar_sizes[j], "green");
+    sortingArray.updateDivElement(j, "green", c_delay+=delay);
   }
-
-  update_div(array_divs[0], array_bar_sizes[0], "green");
+  sortingArray.updateDivElement(0, "green", c_delay+=delay);
   pseudoCodeBox.updatePseudoCode(1, c_delay+=delay);
   enable_buttons();
 }
@@ -226,5 +219,5 @@ function bubble_sort(pseudoCodeBox, logBox)
 function run_sorting_algorithm()
 {
   disable_buttons();
-  bubble_sort(pseudoCodeBox, logBox);
+  bubble_sort(pseudoCodeBox, logBox, sortingArray);
 }
