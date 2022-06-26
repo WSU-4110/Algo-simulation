@@ -42,6 +42,8 @@ var arraySection=document.getElementById("array_section");
 arraySection.style="flex-direction:row";
 
 let sortingArray = new SortingArray(arrayBarSizes, arrayDivElements, array_size, arraySection);
+sortingArray.addObserver(pseudoCodeBox);
+sortingArray.addObserver(logBox);
 
 array_integer_field.disabled=true;
 add_integer_button.disabled=true;
@@ -179,23 +181,27 @@ function bubble_sort(pseudoCodeBox, logBox, sortingArray)
   c_delay=0;
   for(var i=0; i<array_size-1; i++)
   {
-    pseudoCodeBox.updatePseudoCode(1, c_delay+=delay);
+    sortingArray.setPeripherals("pseudo", 0, "none", 1, c_delay+=delay);
+    //pseudoCodeBox.updatePseudoCode(1, c_delay+=delay);
     for(var j=0; j<array_size-i-1;j++)
     {
-      pseudoCodeBox.updatePseudoCode(2, c_delay+=delay);
       sortingArray.updateDivElement(j, "yellow", c_delay+=delay);
-      logBox.updateLogBox(sortingArray.arrayBarSizes[j], sortingArray.arrayBarSizes[j+1], "Comparing", c_delay+=delay);
+      sortingArray.setPeripherals("both", j, "Comparing", 2, c_delay+=delay);
+      //pseudoCodeBox.updatePseudoCode(2, c_delay+=delay);
+      //logBox.updateLogBox(sortingArray.arrayBarSizes[j], sortingArray.arrayBarSizes[j+1], "Comparing", c_delay+=delay);
 
 
       if(sortingArray.arrayBarSizes[j]>sortingArray.arrayBarSizes[j+1])
       {
 
-        pseudoCodeBox.updatePseudoCode(3, c_delay+=delay);
-        logBox.updateLogBox(sortingArray.arrayBarSizes[j], sortingArray.arrayBarSizes[j+1], "Swapping", c_delay+=delay);
+        //pseudoCodeBox.updatePseudoCode(3, c_delay+=delay);
+        //logBox.updateLogBox(sortingArray.arrayBarSizes[j], sortingArray.arrayBarSizes[j+1], "Swapping", c_delay+=delay);
+        sortingArray.setPeripherals("both", j, "Swapping", 3, c_delay+=delay);
         sortingArray.updateDivElement(j, "red", c_delay+=delay);
         sortingArray.updateDivElement(j+1, "red", c_delay+=delay);
 
-        pseudoCodeBox.updatePseudoCode(4, c_delay+=delay);
+        sortingArray.setPeripherals("pseudo", j, "none", 4, c_delay+=delay);
+        //pseudoCodeBox.updatePseudoCode(4, c_delay+=delay);
 
         sortingArray.swapDivElements(j, j+1);
 
@@ -204,14 +210,17 @@ function bubble_sort(pseudoCodeBox, logBox, sortingArray)
 
 
       }
-      pseudoCodeBox.updatePseudoCode(2, c_delay+=delay);
+      sortingArray.setPeripherals("pseudo", j, "none", 2, c_delay+=delay);
+      //pseudoCodeBox.updatePseudoCode(2, c_delay+=delay);
       sortingArray.updateDivElement(j, "blue", c_delay+=delay);
     }
-    pseudoCodeBox.updatePseudoCode(1, c_delay+=delay);
+    sortingArray.setPeripherals("pseudo", 0, "none", 1, c_delay+=delay);
+    //pseudoCodeBox.updatePseudoCode(1, c_delay+=delay);
     sortingArray.updateDivElement(j, "green", c_delay+=delay);
   }
   sortingArray.updateDivElement(0, "green", c_delay+=delay);
-  pseudoCodeBox.updatePseudoCode(1, c_delay+=delay);
+  sortingArray.setPeripherals("pseudo", 0, "none", 1, c_delay+=delay);
+  //pseudoCodeBox.updatePseudoCode(1, c_delay+=delay);
   enable_buttons();
 }
 
