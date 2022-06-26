@@ -176,7 +176,7 @@ function enable_buttons()
   },c_delay+=delay);
 }
 
-function bubble_sort(pseudoCodeBox, logBox, sortingArray)
+function bubble_sort(sortingArray)
 {
   c_delay=0;
   for(var i=0; i<array_size-1; i++)
@@ -228,5 +228,5 @@ function bubble_sort(pseudoCodeBox, logBox, sortingArray)
 function run_sorting_algorithm()
 {
   disable_buttons();
-  bubble_sort(pseudoCodeBox, logBox, sortingArray);
+  bubble_sort(sortingArray);
 }
