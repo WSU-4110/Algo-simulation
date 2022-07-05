@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+:root{
+    --primary-color: #3d97e5;
+    --secondary-color: #2d88e8;
+    --dark-color: #025c1d;
+    --light-color: #989898;
+}
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    font-family: 'Lato', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+ul{
+    list-style-type: none;
+    text-align: center;
+}
+li{
+    padding-top: 20px;
+}
+a{
+    text-decoration: none;
+    color: #333;
+    font-size: xx-large;
+    text-align: center;
+
+}
+
+
+h1, h2{
+    font-weight: 300;
+    line-height: 1.2;
+    margin: 10px 0;
+}
+h3{
+    font-size: x-large;
+}
+
+p{
+    margin: 10px 0;
+}
+
+img{
+    width: 100%
+}
+
+.navbar{
+    background-color: var(--primary-color);
+    color: #fff;
+    height: 100px;
+
+}
+
+.navbar ul{
+    display: flex;
+}
+
+.navbar a{
+    color: #fff;
+    padding: 10px;
+    margin: 0 5px;
+}
+
+.navbar a:hover{
+    border-bottom: 2px #fff solid;
+}
+
+.navbar .flex{
+    justify-content: space-between;
+}
+
+
+/* STATS */
+.stats{
+    padding-top: 100px;
+
+}
+
+.stats-heading{
+    max-width: 500px;
+    margin: auto;
+
+}
+
+.stats .grid h3{
+    font-size: 35px;
+}
+
+.stats .grid p{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* CLI */
+.cli .grid{
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2 , 1fr);
+
+}
+
+.cli .grid > *:first-child{
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 2;
+}
+
+/* CLOUD */
+
+.cloud .grid{
+
+    grid-template-columns: 4fr 3fr;
+}
+
+/* ALGORITHMS */
+
+.languages .flex{
+    flex-wrap: wrap;
+}
+.languages .card{
+    text-align: center;
+    margin: 18px 10px 40px;
+    transition: transform 0.2 ease-in;
+}
+
+.languages .card h4{
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.languages .card:hover{
+    transform: translateY(-15px);
+}
+
+/* footer */
+
+.footer .social a{
+    --primary-color: #168103;
+    --secondary-color: #0a7700;
+    margin: 0 10px;
+    
+}
+
+/* tablets and under */
+@media(max-width: 768px){
+    .grid, .showcase .grid, .stats .grid, .cli .grid, .cloud .grid{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+    }
+    .showcase{
+        height: auto;
+    }
+
+    .showcase-text{
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .showcase-form{
+        justify-self: center;
+        margin: auto;
+    }
+
+    .cli .grid > *:first-child{
+        grid-column: 1 ;
+        grid-row: 1 ;
+    }
+}
+
+/*mobile */
+@media(max-width: 500px){
+    .navbar{
+        height: 180px;
+    }
+    .navbar .flex{
+        flex-direction: column;
+    }
+
+    .navbar ul{
+        padding: 10px;
+    }
+}
