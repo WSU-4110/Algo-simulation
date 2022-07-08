@@ -1,0 +1,38 @@
+svg{
+    /*background:gray;*/
+    display: block;
+    margin: auto;
+}
+
+.node circle{
+    fill: #fff;
+    stroke: steelblue;
+    stroke-width: 21px;
+}
+
+.node text{ font: 12px sans-serif; }
+
+.link{
+    fill: none;
+    stroke: #ccc;
+    stroke-width: 2px;
+}
+.link.hidden{
+  fill: rgba(0, 0, 0, 0) !important;
+  stroke: rgba(0, 0, 0, 0);
+  display: none;
+}
+
+
+.node.hidden{
+        fill: rgba(0, 0, 0, 0) !important;
+        stroke: rgba(0, 0, 0, 0);
+}
+
+.pseudocode_section
+{
+  background-color: #f5ef4e;
+  text-align: center;
+  border-style: solid;
+  border-color: silver;
+}
