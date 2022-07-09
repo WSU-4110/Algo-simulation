@@ -28,11 +28,7 @@ function getTreeData(sizeOfTree){
     {
       treeet.insert(new Node(numbers[i]), treeet.root);
     }
-    /*
-    for (i in numbers){
-          treeet.insert(new Node(numbers[i]), treeet.root);
-        }
-    */
+    
     var information = [treeet.root.createStructure()];
     console.log(numbers);
         console.log(information);

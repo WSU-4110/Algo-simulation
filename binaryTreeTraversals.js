@@ -15,7 +15,12 @@ var inOrderRadioButton=document.getElementById('inorder');
 var preOrderRadioButton=document.getElementById('preorder');
 var postOrderRadioButton=document.getElementById('postorder');
 
-//for log or pseudoCodeBox
+//for logbox
+var firstLogBox=document.getElementById("first_box");
+var secondLogBox=document.getElementById("second_box");
+var thirdLogBox=document.getElementById("third_box");
+var fourthLogBox=document.getElementById("fourth_box");
+var fifthLogBox=document.getElementById("fifth_box");
 
 
 //for pseudocode
@@ -26,6 +31,14 @@ var fourthPseudoCodeBox=document.getElementById("fourth_pseudocode_box");
 var fifthPseudoCodeBox=document.getElementById("fifth_pseudocode_box");
 var sixthPseudoCodeBox=document.getElementById("sixth_pseudocode_box");
 var seventhPseudoCodeBox=document.getElementById("seventh_pseudocode_box");
+
+//for log box and pseudocode boc
+var log_box=document.getElementById("log_box");
+var pseudocode_box=document.getElementById("pseudocode_box");
+
+//for radio button view selection
+var view_log_button=document.getElementById("view_log");
+var view_pseudocode_button=document.getElementById("view_pseudocode");
 
 //for svg size
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
@@ -81,14 +94,15 @@ g.innerHTML="";
   links = tree.links(nodes);
 
 
-
+  //assigns y coordinate for each node
   nodes.forEach(function(d) { d.y = d.depth * 150; });
 
-
+  //selects each node, setting unique ids
   var node = svg.selectAll("g.node")
       	  .data(nodes, function(d) { return d.id || (d.id = ++i); });
 
-
+  //nodeEnter function, if name is "" node is hidden an not visible
+  //invisible nodes are needed for binary tree
   var nodeEnter = node.enter().append("g")
       	  .attr("class", function(d){
           if (d.name == "") {
@@ -99,6 +113,7 @@ g.innerHTML="";
       	  .attr("transform", function(d) {
       		  return "translate(" + d.x + "," + d.y + ")"; });
 
+  //circle appended for each node, colored based on different values
   nodeEnter.append("circle")
           .attr("r", 10)
       	  .style("fill", "#fff")
@@ -109,21 +124,21 @@ g.innerHTML="";
                 {return "deepskyblue";} else
                 {return "lightgreen";}}});
 
+        //text added to nodes
         nodeEnter.append("text")
       	  .attr("x", function(d) {
       		  return d.children || d._children ?  0 : 0; })
       	  .attr("dy", ".35em")
-
-            .attr("text-anchor", "middle")
+          .attr("text-anchor", "middle")
       	  .text(function(d) { return d.name; })
       	  .style("fill-opacity", 1);
 
-
+        //holds all links
         var link = svg.selectAll("path.link")
       	  .data(links, function(d) { if(!isNaN(d.target.name)){return d.target.id;}});
 
 
-
+        //link addributes dictate whether link is visible
         link.enter().insert("path", "g")
       	 .attr("class", function(d){
            if (d.target.name == "") {
@@ -138,7 +153,7 @@ g.innerHTML="";
 
 
 
-//executes specified trabersal
+//executes specified traversal
 function executeTraversal() {
   c_delay = 0;
   treeroot = information[0];
@@ -174,6 +189,8 @@ function preOrder(treeroot){
     window.setTimeout(function(){
       resetPsuedoCode();
       thirdPseudoCodeBox.style="background-color:#ffff66;";
+      incrementLogBox();
+      firstLogBox.innerHTML="Node is null";
     }, c_delay+= delay);
       return;
   } else {
@@ -182,18 +199,24 @@ function preOrder(treeroot){
       fourthPseudoCodeBox.style="background-color:#ffff66;";
       treeroot.visited=1;
       update(root);
+      incrementLogBox();
+      firstLogBox.innerHTML=`Visiting node ${treeroot.name}`;
     }, c_delay+= delay);
 
     if(treeroot.hasOwnProperty('children')){
       window.setTimeout(function(){
         resetPsuedoCode();
         fifthPseudoCodeBox.style="background-color:#ffff66;";
+        incrementLogBox();
+        firstLogBox.innerHTML="Traversing Left Node";
       }, c_delay+= delay);
       preOrder(treeroot.children[0]);
 
       window.setTimeout(function(){
         resetPsuedoCode();
         sixthPseudoCodeBox.style="background-color:#ffff66;";
+        incrementLogBox();
+        firstLogBox.innerHTML="Traversing Right Node";
       }, c_delay+= delay);
       preOrder(treeroot.children[1]);
     }
@@ -207,6 +230,8 @@ function postOrder(treeroot){
     window.setTimeout(function(){
       resetPsuedoCode();
       thirdPseudoCodeBox.style="background-color:#ffff66;";
+      incrementLogBox();
+      firstLogBox.innerHTML="Node is null";
     }, c_delay+= delay);
       return;
   } else {
@@ -215,12 +240,16 @@ function postOrder(treeroot){
       window.setTimeout(function(){
         resetPsuedoCode();
         fourthPseudoCodeBox.style="background-color:#ffff66;";
+        incrementLogBox();
+        firstLogBox.innerHTML="Traversing Left Node";
       }, c_delay += delay);
       postOrder(treeroot.children[0]);
 
       window.setTimeout(function(){
         resetPsuedoCode();
         fifthPseudoCodeBox.style="background-color:#ffff66;";
+        incrementLogBox();
+        firstLogBox.innerHTML="Traversing Right Node";
       }, c_delay += delay);
       postOrder(treeroot.children[1]);
 
@@ -229,6 +258,8 @@ function postOrder(treeroot){
         sixthPseudoCodeBox.style="background-color:#ffff66;";
         treeroot.visited=1;
         update(root);
+        incrementLogBox();
+        firstLogBox.innerHTML=`Visiting node ${treeroot.name}`;
       }, c_delay+= delay);
     } else {
       window.setTimeout(function(){
@@ -236,6 +267,8 @@ function postOrder(treeroot){
         sixthPseudoCodeBox.style="background-color:#ffff66;";
         treeroot.visited=1;
         update(root);
+        incrementLogBox();
+      firstLogBox.innerHTML=`Visiting node ${treeroot.name}`;
       }, c_delay+= delay);
     }
 
@@ -248,12 +281,16 @@ function inOrder(treeroot){
     window.setTimeout(function(){
       resetPsuedoCode();
       thirdPseudoCodeBox.style="background-color:#ffff66;";
+      incrementLogBox();
+      firstLogBox.innerHTML="Node is null";
     }, c_delay+= delay);
       return;
   }else if(treeroot.hasOwnProperty('children')){
     window.setTimeout(function(){
       resetPsuedoCode();
       fourthPseudoCodeBox.style="background-color:#ffff66;";
+      incrementLogBox();
+        firstLogBox.innerHTML="Traversing Left Node";
     }, c_delay+= delay);
     inOrder(treeroot.children[0]);
     window.setTimeout(function(){
@@ -261,11 +298,15 @@ function inOrder(treeroot){
       fifthPseudoCodeBox.style="background-color:#ffff66;";
       treeroot.visited=1;
       update(root);
+      incrementLogBox();
+      firstLogBox.innerHTML=`Visiting node ${treeroot.name}`;
     }, c_delay+= delay);
 
     window.setTimeout(function(){
       resetPsuedoCode();
       sixthPseudoCodeBox.style="background-color:#ffff66;";
+      incrementLogBox();
+        firstLogBox.innerHTML="Traversing Right Node";
     }, c_delay+= delay);
     inOrder(treeroot.children[1]);
 
@@ -275,11 +316,29 @@ function inOrder(treeroot){
       fifthPseudoCodeBox.style="background-color:#ffff66;";
       treeroot.visited=1;
       update(root);
+      incrementLogBox();
+      firstLogBox.innerHTML=`Visiting node ${treeroot.name}`;
     }, c_delay += delay);
 
     return;
   }
 }
+
+view_log_button.addEventListener('change', function(e)
+{
+  if (this.checked) {
+    pseudocode_box.style.display="none";
+    log_box.style.display="block";
+  }
+});
+
+view_pseudocode_button.addEventListener('change', function(e)
+{
+  if (this.checked) {
+    log_box.style.display="none";
+    pseudocode_box.style.display="block";
+  }
+});
 
 function setPseudoCodeInOrder(){
   firstPseudoCodeBox.innerHTML="inorder(tree)";
@@ -319,4 +378,11 @@ function resetPsuedoCode(){
   fifthPseudoCodeBox.style="background-color:#f5ef4e;";
   sixthPseudoCodeBox.style="background-color:#f5ef4e;";
   seventhPseudoCodeBox.style="background-color:#f5ef4e;";
+}
+
+function incrementLogBox(){
+  fifthLogBox.innerHTML=fourthLogBox.innerHTML;
+  fourthLogBox.innerHTML=thirdLogBox.innerHTML;
+  thirdLogBox.innerHTML=secondLogBox.innerHTML;
+  secondLogBox.innerHTML=firstLogBox.innerHTML;
 }
