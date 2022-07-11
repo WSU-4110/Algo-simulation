@@ -19,7 +19,7 @@ class SortingArray {
     clearArraySection(){
       this.arraySection.innerHTML="";
     }
-  
+  //Shows the numbers on the array
     generateArrayElements(){
       this.clearArraySection();
       for(var i = 0; i < this.arraySize; i++)

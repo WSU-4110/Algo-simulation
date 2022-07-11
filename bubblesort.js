@@ -109,6 +109,7 @@ function create_array()
   sortingArray.generateArrayElements();
 }
 
+
 function create_array_user()
 {  
 array_integer_field=document.getElementById('array_integer');
@@ -118,7 +119,7 @@ array_integer_field=document.getElementById('array_integer');
   array_for_sorting = [];
   var allIntegers = true;
 
-
+//Allows the user to take multiple inputs at once
 for(var i = 0; i < integer_array.length; i++)
 {
   var number_to_be_added = parseInt(integer_array[i]);
