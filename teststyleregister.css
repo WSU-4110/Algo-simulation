@@ -67,6 +67,11 @@ input[type="password"] {
     font-size: 20px;
 }
 
+.loginbox input[type = "checkbox"]{
+    width: auto;
+}
+
+
 .loginbox input[type="button"] {
     border: none;
     outline: none;

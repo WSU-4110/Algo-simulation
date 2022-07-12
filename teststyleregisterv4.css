@@ -16,12 +16,12 @@ body{
 }
 
 a {
-    color: #2762eb;
+    color: #000000;
     text-decoration: none;
 }
 
 a:hover{
-    color: #f74848 
+    color: #f74848
 }
 
 .container{
