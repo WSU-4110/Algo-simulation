@@ -123,6 +123,14 @@ section .pseudocode_section
     transform: translateY(-15px);
 }
 
+.block_id {
+    display: flex;
+    color: black;
+    margin-top: -20px;
+    width: 100%;
+    text-align: center;
+  }
+
 /* footer */
 
 .footer .social a{
