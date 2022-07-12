@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+            <meta charset = "UTF-8">
+            <meta http-equiv = "X-UA-Compatible" content = "IO-edge"></meta>
+            <meta name = "viewport" content = "width=devioce-width, initial-scale = 1.0">
+            <title>Firebase Authentication</title>
+            <script src = "https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+            <link rel = "stylesheet" type = "text/css" href = "teststyleregisterv4.css">
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+        </head>
+    <body>
+            <div class = "container">
+                <form>
+                    <h3>Register Here</h3>
+                <div class = "form-control">
+                    <label for = "password">Name</label>
+                    <input type = "text" id = "name" placeholder = "Enter your full name">
+                </div>
+                <div class = "form-control">
+                    <label for = "email">Email</label>
+                    <input type = "email" id = "email" placeholder = "Enter your email">
+                </div>
+                <div class = "form-control">
+                    <label for = "password">Password</label>
+                    <input type = "password" id = "password" placeholder = "Password">
+                </div>
+                
+                <div class = "form-control">
+                    <label for = "password">Confirm password</label>
+                    <input type = "password" id = "password2" placeholder = "Confirm password">
+                </div>
+
+                <button class = "btn" id = "sub_btn">Register</button>
+                <div class = "form-control">
+                    <a href = "#">Forgot Password?</a>
+                </div>   
+
+                <small><a href = "testlogin4.html">Already have an account?</a></small>
+            </form>
+
+
+
+            </div>
+    
+
+            <script type="module">
+                // Import the functions you need from the SDKs you need
+                import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
+                import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-analytics.js";
+                import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-auth.js";
+                import { getDatabase, ref, set, child, get } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-database.js";
+                // TODO: Add SDKs for Firebase products that you want to use
+                // https://firebase.google.com/docs/web/setup#available-libraries
+              
+                // Your web app's Firebase configuration
+                // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+                const firebaseConfig = {
+                  apiKey: "AIzaSyAK09hAg1puDmfULhLqvCKf86crQ_eyFWI",
+                  authDomain: "algo-simulation-7cc87.firebaseapp.com",
+                  databaseURL: "https://algo-simulation-7cc87-default-rtdb.firebaseio.com",
+                  projectId: "algo-simulation-7cc87",
+                  storageBucket: "algo-simulation-7cc87.appspot.com",
+                  messagingSenderId: "435094910087",
+                  appId: "1:435094910087:web:776c43a33ed8bf4ff6b422",
+                  measurementId: "G-1MT1BNZNRK"
+                };
+              
+  
+      
+    // ----------------------------REFERENCES--------------------------------//
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase();
+    const analytics = getAnalytics(app);
+    const email = document.getElementById("email");
+    const name = document.getElementById('name');
+    const password = document.getElementById("password");
+    const password2 = document.getElementById("password2");
+    const submit = document.getElementById("sub_btn");
+    const auth = getAuth();
+
+    //-------------------------VALIDATION-----------------------------------------//
+    function isEmptyOrSpaces(str){
+        return str ===null || str.match(/^ *$/) !== null;
+    }
+
+    function registerFirebaseAuth(){
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var name = document.getElementById('name').value;
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+        // Signed in 
+            const user = userCredential.user;
+            writeUserData(user, email, name);
+            })
+            .catch((error)=> {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+
+                alert(errorMessage);
+            })
+    }
+
+    function Validation(){
+        let emailregex = /^[a-zA-Z0-9]+@(gmail|yahoo|outlook|hotmail)\.com$/;
+        let nameregex = /^[a-zA-Z\s]+$/;
+        let userregex = /^[a-zA-z0-9]{5,}$/;
+
+        if(isEmptyOrSpaces(name.value) || isEmptyOrSpaces(email.value) || isEmptyOrSpaces(username.value)
+        || isEmptyOrSpaces(password.value)){
+            alert("You cannot have any blank fields.")
+            return false;
+        }
+
+        if(!emailregex.test(email.value)){
+            alert("Enter a valid email address");
+            return false;
+        }
+        if(!nameregex.test(name.value)){
+            alert("Your name should only contain alphabet characters.")
+            return false;
+        }
+        if(!userregex.test(username.value)){
+            alert("-Username can only be alphanumeric\n-Username must be at least 5 characters\n-Username cannot contain spaces");
+            return false;
+        }
+        return true;
+    }
+
+    function RegisterUser(){
+        if (!Validation()){
+            return;
+        };
+
+        var pw1 = document.getElementById("password").value;  
+        var pw2 = document.getElementById("password2").value;  
+        if(pw1 != pw2)  
+        {   
+            alert("Passwords did not match");
+            return;
+        }
+        registerFirebaseAuth();
+    }
+
+
+    function writeUserData(userId, email, name) {
+        
+        const db = getDatabase();
+        const dbRef = ref(db);
+
+        get(child(dbRef, "UsersList/"+ userId.uid)).then((snapshot)=>{
+            if(snapshot.exists()){
+                alert("Account already exists.");
+            }
+            else{
+                set(ref(db, "UsersList/" + userId.uid),{
+                    fullname: name,
+                    UID: userId.uid,
+                    email: email,
+                    password: encPass()
+                })
+                .then(()=>{
+                    alert("The account was registered successfully.");
+                })
+                .catch((error)=>{
+                    alert("error" + error);
+                })
+            }
+        });
+        }
+
+//----------------------------ENCRYPT ----------------------------------------//
+
+function encPass(){
+    var pass12 = CryptoJS.AES.encrypt(password.value, password.value);
+    return pass12.toString();
+}
+
+//----------------------------EVENT HANDLING-----------------------------------//
+
+submit.addEventListener('click', RegisterUser);
+
+</script>
+</body>
+</html>
+    
