@@ -1,0 +1,71 @@
+.title {
+    text-align: center;
+    font-size: 40px;
+    position: relative;
+  }
+  
+  .grid {
+    margin: 0 auto;
+    position: relative;
+    background: #fff;
+  }
+  
+  .node {
+    background: #e2e0e0;
+    position: absolute;
+    box-sizing: border-box;
+  }
+  
+  .node.obstacle {
+    background: black;
+  }
+  
+  .node.path {
+    height: 27px;
+    width: 27px;
+    margin: 0 auto;
+    background-color: blue;
+    animation-name: stretch;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+    animation-delay: 0;
+    animation-play-state: running;
+  }
+  
+  .node.start,
+  .node.goal {
+    color: black;
+  }
+  
+  .node.start {
+    background-color: red;
+    background-size: contain;
+  }
+  
+  .node.goal {
+    background-color: #5edb04;
+    background-position: center;
+    background-size: contain;
+  }
+  
+  #buttons {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .btn {
+    display: inline-block;
+    color: #212529;
+    font-size: 1rem;
+  }
+  
+  .btn-design{
+    color: #212529;
+    border-color: #212529;
+  }
+  
+  .btn-design:hover {
+    background-color: #212529;
+    color: #fff;
+    border-color: #212529;
+  }
