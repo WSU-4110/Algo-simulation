@@ -193,7 +193,7 @@ function enable_buttons()
 function merge_sort_start()
 {
     let array1 = merge_sort(array_bar_sizes);
-    if (array_size == 1) { 
+    if (array_size == 1) {
       update_div(array_bar_sizes[0].div, array_bar_sizes[0].size, "green");
     }
 
@@ -216,7 +216,7 @@ function merge_sort(unsortedArray)
 function merge_sort_helper(left_array, right_array)
 {
     c_delay=0;
-   
+
     let temp = [];
 
     while (left_array.length && right_array.length) {
@@ -228,11 +228,11 @@ function merge_sort_helper(left_array, right_array)
       else {
         update_div(left_array[0].div, left_array[0].size, "red");
         update_div(right_array[0].div, right_array[0].size, "red");
-        
+
         tempDiv = left_array[0].div;
         left_array[0].div = right_array[0].div;
         right_array[0].div = tempDiv;
-        
+
         update_div(left_array[0].div, left_array[0].size, "blue");
         update_div(right_array[0].div, right_array[0].size, "blue");
 
