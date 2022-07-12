@@ -40,12 +40,23 @@ p{
 img{
     width: 100%
 }
-
+.logo{
+    margin-top: 150px;
+    padding-top: 1px;
+    text-align: center;
+    background-color: var(--primary-color);
+    color: #fff;
+    height: 200px;
+}
 .navbar{
     background-color: var(--primary-color);
     color: #fff;
-    height: 100px;
-
+    height: 70px;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
 }
 
 .navbar ul{
@@ -69,7 +80,7 @@ img{
 
 /* STATS */
 .stats{
-    padding-top: 100px;
+    padding-top: 160px;
 
 }
 
@@ -162,7 +173,7 @@ img{
 /*mobile */
 @media(max-width: 500px){
     .navbar{
-        height: 180px;
+        height: 120px;
     }
     .navbar .flex{
         flex-direction: column;
