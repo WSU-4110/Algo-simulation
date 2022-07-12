@@ -192,37 +192,11 @@ function enable_buttons()
 
 function merge_sort_start()
 {
-    // let array1 = merge_sort(array_bar_sizes);
-    // if (array_size == 1) { 
-    //   update_div(array_bar_sizes[0].div, array_bar_sizes[0].size, "green");
-    // }
+    let array1 = merge_sort(array_bar_sizes);
+    if (array_size == 1) {
+      update_div(array_bar_sizes[0].div, array_bar_sizes[0].size, "green");
+    }
 
-    // Delete Lines 200 - 223
-    update_div(array_bar_sizes[0].div, array_bar_sizes[0].size, "yellow");
-    update_div(array_bar_sizes[1].div, array_bar_sizes[1].size, "yellow");
-    update_div(array_bar_sizes[0].div, array_bar_sizes[0].size, "green");
-    update_div(array_bar_sizes[1].div, array_bar_sizes[1].size, "green");
-    update_div(array_bar_sizes[0].div, array_bar_sizes[0].size, "blue");
-    update_div(array_bar_sizes[1].div, array_bar_sizes[1].size, "blue");
-
-    update_div(array_bar_sizes[2].div, array_bar_sizes[2].size, "yellow");
-    update_div(array_bar_sizes[3].div, array_bar_sizes[3].size, "yellow");
-    update_div(array_bar_sizes[2].div, array_bar_sizes[2].size, "red");
-    update_div(array_bar_sizes[3].div, array_bar_sizes[3].size, "red");
-
-    update_div(array_bar_sizes[3].div, array_bar_sizes[2].size, "yellow");
-    update_div(array_bar_sizes[2].div, array_bar_sizes[3].size, "yellow");
-    update_div(array_bar_sizes[3].div, array_bar_sizes[2].size, "green");
-    update_div(array_bar_sizes[2].div, array_bar_sizes[3].size, "green");
-    update_div(array_bar_sizes[3].div, array_bar_sizes[2].size, "blue");
-    update_div(array_bar_sizes[2].div, array_bar_sizes[3].size, "blue");
-
-    update_div(array_bar_sizes[0].div, array_bar_sizes[0].size, "green");
-    update_div(array_bar_sizes[1].div, array_bar_sizes[1].size, "green");
-    update_div(array_bar_sizes[2].div, array_bar_sizes[3].size, "green");
-    update_div(array_bar_sizes[3].div, array_bar_sizes[2].size, "green");
-
-    
     enable_buttons();
 
 }
@@ -242,39 +216,39 @@ function merge_sort(unsortedArray)
 function merge_sort_helper(left_array, right_array)
 {
     c_delay=0;
-   
+
     let temp = [];
 
     while (left_array.length && right_array.length) {
-      // update_div(left_array[0].div, left_array[0].size, "yellow");
+      update_div(left_array[0].div, left_array[0].size, "yellow");
       if (left_array[0].size <= right_array[0].size){
-        // update_div(left_array[0].div, left_array[0].size, "blue");
+        update_div(left_array[0].div, left_array[0].size, "blue");
         temp.push(left_array.shift());
       }
       else {
-        // update_div(left_array[0].div, left_array[0].size, "red");
-        // update_div(right_array[0].div, right_array[0].size, "red");
-        
-        // tempDiv = left_array[0].div;
-        // left_array[0].div = right_array[0].div;
-        // right_array[0].div = tempDiv;
-        
-        // update_div(left_array[0].div, left_array[0].size, "blue");
-        // update_div(right_array[0].div, right_array[0].size, "blue");
+        update_div(left_array[0].div, left_array[0].size, "red");
+        update_div(right_array[0].div, right_array[0].size, "red");
+
+        tempDiv = left_array[0].div;
+        left_array[0].div = right_array[0].div;
+        right_array[0].div = tempDiv;
+
+        update_div(left_array[0].div, left_array[0].size, "blue");
+        update_div(right_array[0].div, right_array[0].size, "blue");
 
         temp.push(right_array.shift())
       }
     }
 
     while (left_array.length) {
-      // update_div(left_array[0].div, left_array[0].size, "yellow");
-      // update_div(left_array[0].div, left_array[0].size, "blue");
+      update_div(left_array[0].div, left_array[0].size, "yellow");
+      update_div(left_array[0].div, left_array[0].size, "blue");
       temp.push(left_array.shift());
     }
 
     while (right_array.length) {
-    //  update_div(right_array[0].div, right_array[0].size, "yellow");
-    //  update_div(right_array[0].div, right_array[0].size, "blue");
+     update_div(right_array[0].div, right_array[0].size, "yellow");
+     update_div(right_array[0].div, right_array[0].size, "blue");
      temp.push(right_array.shift());
     }
 
