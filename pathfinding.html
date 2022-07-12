@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Pathfinding Visualizer</title>
+    <link rel="stylesheet" href="css/gridstyle.css" />
+  </head>
+  <body onload="app.launch()">
+    <header>
+      <div class="title">A* Visualizer</div>
+    </header>
+    <div class="grid"></div>
+    <div id="buttons">
+      <button class="btn btn-design" onclick="app.findPathSpeed('Default')">
+        A*
+      </button>
+      <button class="btn btn-design" onclick="Grid.clearGrid()">
+        Clear
+      </button>
+    </div>
+    <script src="js/grid.js"></script>
+    <script src="js/algos/astar.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
