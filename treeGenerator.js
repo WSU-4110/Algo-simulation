@@ -1,5 +1,4 @@
 function getTreeData(sizeOfTree){
-    console.log(sizeOfTree);
   
     var numbers = [];
     var testInt;
@@ -37,7 +36,6 @@ function getTreeData(sizeOfTree){
   
   function getRandomInteger(max)
   {
-    console.log(max);
     return Math.floor(Math.random() * (max)) + 1;
   }
   
@@ -59,5 +57,10 @@ function getTreeData(sizeOfTree){
       }
       return used;
     }
+  }
+
+  module.exports= {
+    getRandomInteger,
+    checkInteger
   }
   

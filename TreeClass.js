@@ -84,7 +84,6 @@ class TreeClass {
     for(var i = 0; i < this.numberOfNodes; i++)
     {
       this.randomArray[i] = this.getRandomInteger(this.numberOfNodes);
-      console.log(this.getRandomInteger(this.numberOfNodes));
     }
   }
 
@@ -202,13 +201,9 @@ class TreeClass {
     for(var i = 0; i < this.treeEdges1.length -1; i++)
     {
       testValue = this.treeEdges1[i];
-      console.log("Test Value");
-      console.log(testValue);
       for(var j = i + 1; j < this.treeEdges1.length; j++)
       {
         secondTestValue = this.treeEdges1[j];
-        console.log("Second Test Value");
-        console.log(secondTestValue);
         if(testValue == secondTestValue)
         {
           if(!this.checkInteger(duplicates, testValue))
@@ -218,8 +213,6 @@ class TreeClass {
         }
       }
     }
-    console.log("Duplicates");
-    console.log(duplicates);
     return duplicates;
   }
 
@@ -272,4 +265,8 @@ class TreeClass {
 
   }
 
+}
+
+module.exports= {
+  TreeClass:TreeClass
 }
