@@ -49,3 +49,7 @@ class SortingArray {
       }, delay);
     }
   }
+
+  module.exports= {
+    SortingArray:SortingArray
+  }
