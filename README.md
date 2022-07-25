@@ -22,5 +22,7 @@ Joshua Peete- https://github.com/WSU-4110/Algo-simulation/tree/Josh
 Html/Css/Javascript - UI development <br/>
 Firebase services- Deployment <br/>
 
+# How to Install:
+Since our project is majority Html/Css/JS, you only have to clone the github repo to your local computer and then open the files in your perfered editor.<br/>
 
 
