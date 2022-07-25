@@ -1,4 +1,5 @@
 const { SortingArray }  = require('../sortingArrayClass');
+const { expect } = require('chai');
 
 //Should return that the arrayBarSize is greater than 2
 describe('ArrayBarSize must be greater than 2', () => {
