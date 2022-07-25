@@ -8,8 +8,18 @@ class SortingArray {
       this.arraySection = arraySection;
     }
 
+    getArrayBarSizes()
+    {
+      return this.arrayBarSizes;
+    }
+
     setArrayBarSizes(arrayBarSizes){
       this.arrayBarSizes=arrayBarSizes;
+    }
+
+    getArraySize()
+    {
+      return this.arraySize;
     }
 
     setArraySize(arraySize){
@@ -34,6 +44,11 @@ class SortingArray {
       }
     }
 
+    getSwapDivElements()
+    {
+      return this.arrayDivElements;
+    }
+
     swapDivElements(firstIndex, secondIndex) {
       let temporary = this.arrayBarSizes[firstIndex];
       this.arrayBarSizes[firstIndex] = this.arrayBarSizes[secondIndex];
@@ -49,3 +64,8 @@ class SortingArray {
       }, delay);
     }
   }
+
+  module.exports= {
+    SortingArray:SortingArray
+  }
+  
