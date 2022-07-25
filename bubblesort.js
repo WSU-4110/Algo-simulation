@@ -109,24 +109,34 @@ function create_array()
   sortingArray.generateArrayElements();
 }
 
+
 function create_array_user()
+{  
+array_integer_field=document.getElementById('array_integer');
+  var userString = array_integer_field.value;
+  var integer_array=userString.split(" ");
+
+  array_for_sorting = [];
+  var allIntegers = true;
+
+//Allows the user to take multiple inputs at once
+for(var i = 0; i < integer_array.length; i++)
 {
-
-  array_integer_field=document.getElementById("array_integer");
-
-  user_int=parseInt(array_integer_field.value);
-
-  if(Number.isInteger(user_int) && user_int > 0)
+  var number_to_be_added = parseInt(integer_array[i]);
+  array_for_sorting[i] = number_to_be_added;
+  if (Number.isNaN(number_to_be_added))
   {
-
-    newArray[user_input_array_index]=user_int;
-    array_size++;
-    user_input_array_index++;
-
-    sortingArray.setArraySize(array_size);
-    sortingArray.setArrayBarSizes(newArray);
-    sortingArray.generateArrayElements();
+    allIntegers = false;
   }
+}
+
+array_size = array_for_sorting.length;
+  if (allIntegers)
+  {
+    sortingArray.setArraySize(array_for_sorting.length);
+    sortingArray.setArrayBarSizes(array_for_sorting);
+    sortingArray.generateArrayElements();
+  } 
 }
 
 function change_array_size()

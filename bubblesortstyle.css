@@ -52,3 +52,11 @@ section .pseudocode_section
   border-style: solid;
   border-color: silver;
 }
+
+.block_id {
+  display: flex;
+  color: black;
+  margin-top: -20px;
+  width: 100%;
+  text-align: center;
+}
