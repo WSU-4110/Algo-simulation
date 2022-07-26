@@ -206,7 +206,7 @@ function quick_partition (start_sorting, end_sorting)
         for(var j =array_size + 1; j <= array_size ; j++ )
         {
             //re-arrange the array by putting elements which are less than pivot on one side and which are greater that on other.
-            if (array_divs[ j ] < piv)
+            if (array_size[ j ] < piv)
             {
               update_pseudocode2();
               update_div(array_divs[j],array_bar_sizes[j], "yellow");//Color update
