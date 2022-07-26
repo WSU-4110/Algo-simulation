@@ -13,38 +13,13 @@ var executeTraversalButton = document.getElementById('traverse_tree');
 //radio buttons for traversal selection
 var depthFirstRadioButton=document.getElementById('depthfirst');
 var breadthFirstRadioButton=document.getElementById('breadthfirst');
-var postOrderRadioButton=document.getElementById('postorder');
-
-//for logbox
-var firstLogBox=document.getElementById("first_box");
-var secondLogBox=document.getElementById("second_box");
-var thirdLogBox=document.getElementById("third_box");
-var fourthLogBox=document.getElementById("fourth_box");
-var fifthLogBox=document.getElementById("fifth_box");
-
-
-//for pseudocode
-var firstPseudoCodeBox=document.getElementById("first_pseudocode_box");
-var secondPseudoCodeBox=document.getElementById("second_pseudocode_box");
-var thirdPseudoCodeBox=document.getElementById("third_pseudocode_box");
-var fourthPseudoCodeBox=document.getElementById("fourth_pseudocode_box");
-var fifthPseudoCodeBox=document.getElementById("fifth_pseudocode_box");
-var sixthPseudoCodeBox=document.getElementById("sixth_pseudocode_box");
-var seventhPseudoCodeBox=document.getElementById("seventh_pseudocode_box");
-
-//for log box and pseudocode boc
-var log_box=document.getElementById("log_box");
-var pseudocode_box=document.getElementById("pseudocode_box");
-
-//for radio button view selection
-var view_log_button=document.getElementById("view_log");
-var view_pseudocode_button=document.getElementById("view_pseudocode");
-
 //for svg size
 var margin = {top: 20, right: 120, bottom: 20, left: 120},
-    width = 1000 - margin.right - margin.left,
-    height = 1000 - margin.top - margin.bottom;
+    width = 1400 - margin.right - margin.left,
+    height = 1200 - margin.top - margin.bottom;
 
+
+//method to draw tree structure in js came from d3.js Tips and Tricks by Malcolm Maclean
 //tree layout from d3
 var tree = d3.layout.tree()
     	.size([height, width]);
@@ -85,10 +60,10 @@ function change_tree_size(){
   update(root);
 }
 
+//method to draw tree structure in js came from d3.js Tips and Tricks by Malcolm Maclean
 //update, called every time tree needs to be redrawn
 function update(source) {
 g.innerHTML="";
-    console.log("Updating");
   // Compute the new tree layout.
   
            //new here
@@ -144,25 +119,21 @@ function executeTraversal() {
   treeroot = information[0];
   if(depthFirstRadioButton.checked)
   {
-    setPseudoCodePreOrder();
     depthFirst(treeroot);
     window.setTimeout(function(){
-      resetPsuedoCode();
       seventhPseudoCodeBox.style="background-color:#ffff66;";
     }, c_delay += delay);
   } else if(breadthFirstRadioButton.checked)
   {
-    setPseudoCodePostOrder();
     breadthFirst(treeroot);
     window.setTimeout(function(){
-      resetPsuedoCode();
       seventhPseudoCodeBox.style="background-color:#ffff66;";
     }, c_delay += delay);
   }
 }
 
 
-
+//executed depth first vizualization
 function depthFirst(treeroot)
 {
     if(treeroot.visited==0)
@@ -183,13 +154,9 @@ function depthFirst(treeroot)
     }
 }
 
+//to assist breadth first execution
 function depthFirstSearch(treeroot, name)
 {
-    console.log("treeroot.name");
-    console.log(treeroot.name);
-
-    console.log("name");
-    console.log(name);
     if(treeroot.name==name)
     {   window.setTimeout(function() {
         treeroot.visited=1;
@@ -207,6 +174,7 @@ function depthFirstSearch(treeroot, name)
     }
 }
 
+//executes breadth first search visualization, stores order of traversal in queue first, then executed vizualization from queue
 function breadthFirst(treeroot)
 {
     let queue = [];
@@ -215,19 +183,13 @@ function breadthFirst(treeroot)
     let childrenLeft = true;
 
     queue.push(treeroot);
-    console.log("in B");
     updateQueue.push(treeroot.name);
     while(queue.length != 0)
     {
-        console.log("in B1");
-        
-        console.log("Queue 0");
-        console.log(queue[0]);
         if(queue[0].hasOwnProperty('children'))
         {
             for(var i = 0; i < queue[0].children.length; i++)
             {  
-                console.log("in B2");
                 let child=queue[0].children[i];
                 queue.push(child); 
                 updateQueue.push(child.name);
@@ -246,72 +208,7 @@ function breadthFirst(treeroot)
            
           
     }
-    console.log("root");
-    console.log(root);
 
     
 }
-
-
-view_log_button.addEventListener('change', function(e)
-{
-  if (this.checked) {
-    pseudocode_box.style.display="none";
-    log_box.style.display="block";
-  }
-});
-
-view_pseudocode_button.addEventListener('change', function(e)
-{
-  if (this.checked) {
-    log_box.style.display="none";
-    pseudocode_box.style.display="block";
-  }
-});
-
-function setPseudoCodeInOrder(){
-  firstPseudoCodeBox.innerHTML="inorder(tree)";
-  secondPseudoCodeBox.innerHTML="begin";
-  thirdPseudoCodeBox.innerHTML="  if tree is null, return";
-  fourthPseudoCodeBox.innerHTML=" inorder(tree.left_subtree);";
-  fifthPseudoCodeBox.innerHTML="  visit tree.root;";
-  sixthPseudoCodeBox.innerHTML="  inorder(tree.right_subtree);";
-  seventhPseudoCodeBox.innerHTML="end";
-}
-
-function setPseudoCodePreOrder(){
-  firstPseudoCodeBox.innerHTML="preorder(tree)";
-  secondPseudoCodeBox.innerHTML="begin";
-  thirdPseudoCodeBox.innerHTML="  if tree is null, return";
-  fourthPseudoCodeBox.innerHTML="visit tree.root";
-  fifthPseudoCodeBox.innerHTML="preorder(tree.left_subtree);";
-  sixthPseudoCodeBox.innerHTML="preorder(tree.right_subtree);";
-  seventhPseudoCodeBox.innerHTML="end";
-}
-
-function setPseudoCodePostOrder(){
-  firstPseudoCodeBox.innerHTML="postorder(tree)";
-  secondPseudoCodeBox.innerHTML="begin";
-  thirdPseudoCodeBox.innerHTML="if tree is null, return";
-  fourthPseudoCodeBox.innerHTML="postorder(tree.left_subtree);";
-  fifthPseudoCodeBox.innerHTML="postorder(tree.right_subtree);";
-  sixthPseudoCodeBox.innerHTML="visit tree.root;";
-  seventhPseudoCodeBox.innerHTML="end";
-}
-
-function resetPsuedoCode(){
-  firstPseudoCodeBox.style="background-color:#f5ef4e;";
-  secondPseudoCodeBox.style="background-color:#f5ef4e;";
-  thirdPseudoCodeBox.style="background-color:#f5ef4e;";
-  fourthPseudoCodeBox.style="background-color:#f5ef4e;";
-  fifthPseudoCodeBox.style="background-color:#f5ef4e;";
-  sixthPseudoCodeBox.style="background-color:#f5ef4e;";
-  seventhPseudoCodeBox.style="background-color:#f5ef4e;";
-}
-
-function incrementLogBox(){
-  fifthLogBox.innerHTML=fourthLogBox.innerHTML;
-  fourthLogBox.innerHTML=thirdLogBox.innerHTML;
-  thirdLogBox.innerHTML=secondLogBox.innerHTML;
-  secondLogBox.innerHTML=firstLogBox.innerHTML;
-}
+window.onload=change_tree_size();
