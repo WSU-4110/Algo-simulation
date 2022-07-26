@@ -37,7 +37,7 @@
         </li>
       </ul>
       </form>
-      
+
   </div>
 </div>
 
@@ -164,13 +164,13 @@
           <h1>Algorithm Simulations</h1>
           <p>Copyright &copy; 2022</p>
       </div>
-      
+
           <ul>
               <li><br><a href = "fehimindex3.html">Home</a></li>
           </ul>
           <a href = "https://github.com/WSU-4110/Algo-simulation">
               <img src = "img/github.png" alt = "" style = "position:relative;width:80px;height:80px;"></a>
-      
+
   </div>
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -191,7 +191,7 @@ import { getFirestore, collection } from "https://www.gstatic.com/firebasejs/9.8
           appId: "1:435094910087:web:776c43a33ed8bf4ff6b422",
           measurementId: "G-1MT1BNZNRK"
         };
-  
+
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
@@ -242,7 +242,7 @@ import { getFirestore, collection } from "https://www.gstatic.com/firebasejs/9.8
     const loginForm = document.querySelector('#login-form');
     loginForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
+
     // get user info
     const email = loginForm['login-email'].value;
     const password = loginForm['login-password'].value;
@@ -262,7 +262,7 @@ import { getFirestore, collection } from "https://www.gstatic.com/firebasejs/9.8
             });
     });
 
-    
+    // track auth state changes
     onAuthStateChanged(auth, (user) => {
         if (user) {
             console.log('user logged in: ', user);
@@ -324,7 +324,7 @@ import { getFirestore, collection } from "https://www.gstatic.com/firebasejs/9.8
 });
 }
 
-
+//forgot password section
 const forgotPasswordForm = document.querySelector('#forgotPassword-form');
 forgotPasswordForm.addEventListener('submit',(e) => {
     e.preventDefault();
@@ -348,6 +348,7 @@ forgotPasswordForm.addEventListener('submit',(e) => {
         return str ===null || str.match(/^ *$/) !== null;
     }
 
+    //basic validation testing for user input
     function Validation(){
         let emailregex = /^[a-zA-Z0-9]+@(gmail|yahoo|outlook|hotmail)\.com$/;
         let nameregex = /^[a-zA-Z\s]+$/;
@@ -369,7 +370,7 @@ forgotPasswordForm.addEventListener('submit',(e) => {
         }
         return true;
     }
-    
+
     let userlink = document.getElementById('userlink');
     let signoutlink = document.getElementById('signoutlink');
     var currentUser = null;
@@ -383,7 +384,7 @@ forgotPasswordForm.addEventListener('submit',(e) => {
             currentUser = JSON.parse(sessionStorage.getItem('user'))
         }
     }
-  
+
   </script>
   </body>
 </html>
