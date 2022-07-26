@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 
 <html>
-<head>
-  <link rel = "stylesheet" href = "utilities.css">
-  <link rel="stylesheet" href="classstyle.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-        <meta charset = "UTF-8">
-        <meta http-equiv = "X-UA-Compatible" content = "IO-edge"></meta>
-        <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
-        <title> Algorithm Simulation | Easy to learn</title>
-</head>
+  <head>
+    <link rel ="stylesheet" href ="utilities.css">
+    <link rel="stylesheet" href="classstyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  
+  
+          <meta charset = "UTF-8">
+          <meta http-equiv = "X-UA-Compatible" content = "IO-edge"></meta>
+          <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
+          <title> Algorithm Simulation | Easy to learn</title>
+  </head>
 
 <body>
 <!-- Navbar-->
@@ -102,8 +103,9 @@
     </form>
   </div>
 </div>
+  <header>
 
-    <h1>INSERTION SORT</h1>
+    <h1>BUBBLE SORT</h1>
   </header>
 
   <section>
@@ -126,6 +128,7 @@
     </div>
   </div>
 
+
       <div class="array_parameters">
         <p>Array Size:</p>
         <input id="size_of_array" type="range" min=5 max=30 step=1 value=20>
@@ -137,7 +140,7 @@
         <button id="add_integer">ADD</button>
     </div>
     <div class="start_array">
-        <button id="start_sort">Start Insertion Sort</button>
+        <button id="start_sort">Start Bubble Sort</button>
     </div>
   </div>
     <div id="array_section">
@@ -176,10 +179,10 @@
 
 
 <div class="pseudocode_section" id="pseudocode_box">
-  <p id="first_pseudocode_box">for j = 0 to J < arraySize with j++</p>
-  <p id="second_pseudocode_box">for j=0 to n-2i >=0 && sortingArray.arrayBarSizes[i]>key</p>
-  <p id="third_pseudocode_box">if Array[j] > Array[j+1if (i==(j-1))</p>
-  <p id="fourth_pseudocode_box">for var k = 0; k < j; k++</p>
+  <p id="first_pseudocode_box">for i=0 to n-2</p>
+  <p id="second_pseudocode_box">for j=0 to n-2</p>
+  <p id="third_pseudocode_box">if Array[j] > Array[j+1]</p>
+  <p id="fourth_pseudocode_box">swap(Array[j], Array[j+1])</p>
 </div>
 </div>
 </section>
@@ -204,7 +207,8 @@
 <script src="sortingArrayClass.js"></script>
 <script src="pseudoCodeClass.js"></script>
 <script src="logBoxClass.js"></script>
-<script src="insertionsort.js"></script>
+<script src="bubblesort.js"></script>
+<script src="bubblesort.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="index.js"></script>
         <script type="module">

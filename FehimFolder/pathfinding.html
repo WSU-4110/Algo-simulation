@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-
 <html>
-<head>
-  <link rel = "stylesheet" href = "utilities.css">
-  <link rel="stylesheet" href="classstyle.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-        <meta charset = "UTF-8">
-        <meta http-equiv = "X-UA-Compatible" content = "IO-edge"></meta>
-        <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
-        <title> Algorithm Simulation | Easy to learn</title>
-</head>
-
-<body>
-<!-- Navbar-->
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Pathfinding Visualizer</title>
+    <link rel="stylesheet" href="css/gridstyle.css" />
+    <link rel="stylesheet" href="classstyle.css">
+    <link rel ="stylesheet" href ="utilities.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  </head>
+  
+  <!-- Navbar-->
         
 <div class="navbar">
   <div class="container flex">
@@ -102,88 +100,25 @@
     </form>
   </div>
 </div>
-
-    <h1>INSERTION SORT</h1>
-  </header>
-
-  <section>
-    <div id = "parameters_section">
-      <div class = "radio_group">
-        <form action="#">
-          <p>
-            <label>
-              <input name="array_setup_choice"  id="random_array" type="radio" value="Create Random Array" checked="checked"/>
-              <span>RANDOM ARRAY</span>
-            </label>
-          </p>
-          <p>
-            <label>
-              <input name="array_setup_choice" id="user_array" type="radio" value="Create User Array"/>
-              <span>CUSTOM ARRAY</span>
-            </label>
-          </p> 
-        </form>
+  
+  <body onload="app.launch()">
+    <header>
+      <div class="title">A* Visualizer</div>
+    </header>
+    <div class="grid"></div>
+    <div id="buttons">
+      <button class="btn btn-design" onclick="app.findPathSpeed('Default')">
+        A*
+      </button>
+      <button class="btn btn-design" onclick="Grid.clearGrid()">
+        Clear
+      </button>
     </div>
-  </div>
+    <script src="js/grid.js"></script>
+    <script src="js/algos/astar.js"></script>
+    <script src="js/app.js"></script>
 
-      <div class="array_parameters">
-        <p>Array Size:</p>
-        <input id="size_of_array" type="range" min=5 max=30 step=1 value=20>
-        <button id="create_random_array">Generate a random array</button>
-      </div>
-      <div class="user_input_parameters">
-        <label for="array_integer">Integer: </label>
-        <input type="text" id="array_integer" name="array_integer">
-        <button id="add_integer">ADD</button>
-    </div>
-    <div class="start_array">
-        <button id="start_sort">Start Insertion Sort</button>
-    </div>
-  </div>
-    <div id="array_section">
-    </div>
-  </section>
-
-<section>
-  <div class="radio_group2">
-    <div class = "radio_group2">
-      <form action="#">
-        <p>
-          <label for = "view_log">
-            <input id = "view_log" name="view_choice" type="radio" value="View Log" checked="checked"/>
-            <span>VIEW LOG</span>
-          </label>
-        </p>
-        <p>
-          <label for = "view_pseudocode">
-            <input id = "view_pseudocode" name="view_choice" type="radio" value="View Pseudocode"/>
-            <span>VIEW PSEUDOCODE</span>
-          </label>
-        </p>
-      </form>
-    </div>
-
-  <div class="output_views">
-  <div class="log_section" id="log_box">
-    <p id="title">Log</p>
-    <p id="fifth_box"></p>
-    <p id="fourth_box"></p>
-    <p id="third_box"></p>
-    <p id="second_box"></p>
-    <p id="first_box"></p>
-  </div>
-
-
-
-<div class="pseudocode_section" id="pseudocode_box">
-  <p id="first_pseudocode_box">for j = 0 to J < arraySize with j++</p>
-  <p id="second_pseudocode_box">for j=0 to n-2i >=0 && sortingArray.arrayBarSizes[i]>key</p>
-  <p id="third_pseudocode_box">if Array[j] > Array[j+1if (i==(j-1))</p>
-  <p id="fourth_pseudocode_box">for var k = 0; k < j; k++</p>
-</div>
-</div>
-</section>
-<!-- FOOTER -->
+    <!-- FOOTER -->
 <footer class="footer bg-dark py5">
   <div class="container grid grid-3">
       <div>
@@ -204,7 +139,8 @@
 <script src="sortingArrayClass.js"></script>
 <script src="pseudoCodeClass.js"></script>
 <script src="logBoxClass.js"></script>
-<script src="insertionsort.js"></script>
+<script src="bubblesort.js"></script>
+<script src="bubblesort.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="index.js"></script>
         <script type="module">
@@ -418,5 +354,5 @@
             }
           
           </script>
-</body>
+  </body>
 </html>
