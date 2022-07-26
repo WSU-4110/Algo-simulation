@@ -184,47 +184,6 @@ function enable_buttons()
   },c_delay+=delay);
 }
 
-function bubble_sort(pseudoCodeBox, logBox, sortingArray)
-{
-  c_delay=0;
-  for(var i=0; i<array_size-1; i++)
-  {
-    pseudoCodeBox.updatePseudoCode(1, c_delay+=delay);
-    for(var j=0; j<array_size-i-1;j++)
-    {
-      pseudoCodeBox.updatePseudoCode(2, c_delay+=delay);
-      sortingArray.updateDivElement(j, "yellow", c_delay+=delay);
-      logBox.updateLogBox(sortingArray.arrayBarSizes[j], sortingArray.arrayBarSizes[j+1], "Comparing", c_delay+=delay);
-
-
-      if(sortingArray.arrayBarSizes[j]>sortingArray.arrayBarSizes[j+1])
-      {
-
-        pseudoCodeBox.updatePseudoCode(3, c_delay+=delay);
-        logBox.updateLogBox(sortingArray.arrayBarSizes[j], sortingArray.arrayBarSizes[j+1], "Swapping", c_delay+=delay);
-        sortingArray.updateDivElement(j, "red", c_delay+=delay);
-        sortingArray.updateDivElement(j+1, "red", c_delay+=delay);
-
-        pseudoCodeBox.updatePseudoCode(4, c_delay+=delay);
-
-        sortingArray.swapDivElements(j, j+1);
-
-        sortingArray.updateDivElement(j, "red", c_delay+=delay);
-        sortingArray.updateDivElement(j+1, "red", c_delay+=delay);
-
-
-      }
-      pseudoCodeBox.updatePseudoCode(2, c_delay+=delay);
-      sortingArray.updateDivElement(j, "blue", c_delay+=delay);
-    }
-    pseudoCodeBox.updatePseudoCode(1, c_delay+=delay);
-    sortingArray.updateDivElement(j, "green", c_delay+=delay);
-  }
-  sortingArray.updateDivElement(0, "green", c_delay+=delay);
-  pseudoCodeBox.updatePseudoCode(1, c_delay+=delay);
-  enable_buttons();
-}
-
 
 function run_sorting_algorithm()
 {
