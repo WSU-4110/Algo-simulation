@@ -3,16 +3,19 @@ array_size=array_size_input.value;
 var create_random_array=document.getElementById("create_random_array");
 var start_sorting=document.getElementById("start_sort");
 
+
 var random_array_button=document.getElementById("random_array");
 var user_array_button=document.getElementById("user_array");
 var array_integer_field=document.getElementById("array_integer");
 var add_integer_button=document.getElementById("add_integer");
+
 
 var log_box=document.getElementById("log_box");
 var pseudocode_box=document.getElementById("pseudocode_box");
 
 var view_log_button=document.getElementById("view_log");
 var view_pseudocode_button=document.getElementById("view_pseudocode");
+
 
 //for log box
 var firstLogBox=document.getElementById("first_box");
@@ -31,9 +34,11 @@ let pseudoCodeBox = new PseudoBox(firstPseudoCodeBox, secondPseudoCodeBox, third
 let logBox = new LogBox(firstLogBox, secondLogBox, thirdLogBox, fourthLogBox, fifthLogBox);
 let newArray = [];
 
+
 var user_input_array_index = 0;
 var user_input_int=document.getElementById("array_integer");
 var user_int = 0;
+
 
 var arrayBarSizes=[];
 var arrayDivElements=[];
@@ -52,6 +57,7 @@ add_integer_button.addEventListener('click', create_array_user);
 random_array_button.addEventListener('change', function(e)
 {
   if (this.checked) {
+
     newArray=[]
     array_section.innerHTML="";
     array_size=array_size_input.value;
@@ -77,6 +83,7 @@ user_array_button.addEventListener('change', function(e)
   }
 });
 
+
 view_log_button.addEventListener('change', function(e)
 {
   if (this.checked) {
@@ -92,7 +99,6 @@ view_pseudocode_button.addEventListener('change', function(e)
     pseudocode_box.style.display="block";
   }
 });
-
 
 create_random_array.addEventListener("click", create_array);
 array_size_input.addEventListener("input", change_array_size);
@@ -183,6 +189,7 @@ function enable_buttons()
   }
   },c_delay+=delay);
 }
+
 
 function bubble_sort(pseudoCodeBox, logBox, sortingArray)
 {

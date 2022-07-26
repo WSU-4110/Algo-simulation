@@ -3,6 +3,11 @@ class BinaryTree {
         this.root = node;
     }
 
+    getRoot()
+  {
+    return this.root;
+  }
+
     // Insert Node
     insert(node, root){
         if (node.value == root.value){
@@ -30,5 +35,8 @@ class BinaryTree {
     }
 
     
-
+    
 }
+module.exports= {
+    BinaryTree:BinaryTree
+  }

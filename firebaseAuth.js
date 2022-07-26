@@ -1,193 +1,4 @@
-<!DOCTYPE html>
 
-<html>
-  <head>
-    <link rel ="stylesheet" href ="utilities.css">
-    <link rel="stylesheet" href="classstyle.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  
-  
-          <meta charset = "UTF-8">
-          <meta http-equiv = "X-UA-Compatible" content = "IO-edge"></meta>
-          <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
-          <title> Algorithm Simulation | Easy to learn</title>
-  </head>
-
-<body>
-<!-- Navbar-->
-        
-<div class="navbar">
-  <div class="container flex">
-          <form class = "form-inline my-2 my-lg-0">
-              <ul class = "navbar-nav mr-auto">
-        <li class="logged-in">
-          <a href="#" class="white-text modal-trigger" data-target="modal-account">Account</a>
-        </li>
-        <li class="logged-in">
-          <a href="#" class="white-text" id="logout">Logout</a>
-        </li>
-        <li class="logged-out" style = "display: none;">
-          <a href="#" class="white-text modal-trigger" data-target="modal-login">Login</a>
-        </li>
-        <li class="logged-out" style = "display: none;">
-          <a href="#" class="white-text modal-trigger" data-target="modal-signup">Sign up</a>
-        </li>
-        <li class="logged-out" style = "display: none;">
-          <a href="#" class="white-text modal-trigger" data-target="modal-forgotPassword">Forgot Password?</a>
-        </li>
-      </ul>
-      </form>
-      
-  </div>
-</div>
-
-<!-- REGISTER -->
-<div id="modal-signup" class="modal">
-  <div class="modal-content">
-    <h4>Sign up</h4><br />
-    <form id="signup-form">
-      <div class="input-field">
-        <input type="email" id="signup-email" required />
-        <label for="signup-email">Email address</label>
-      </div>
-      <div class="input-field">
-        <input type="password" id="signup-password" required />
-        <label for="signup-password">Choose password</label>
-      </div>
-      <div class="input-field">
-          <input type="password" id="signup-confirmPassword" required />
-          <label for="signup-confirmPassword">Confirm password</label>
-        </div>
-      <button class="btn yellow darken-2 z-depth-0">Sign up</button>
-    </form>
-  </div>
-</div>
-
-<!-- LOGIN MODAL WINDOW -->
-
-<div id="modal-login" class="modal">
-  <div class="modal-content">
-    <h4>Login</h4><br />
-    <form id="login-form">
-      <div class="input-field">
-        <input type="email" id="login-email" required />
-        <label for="login-email">Email address</label>
-      </div>
-      <div class="input-field">
-        <input type="password" id="login-password" required />
-        <label for="login-password">Your password</label>
-      </div>
-      <button class="btn yellow darken-2 z-depth-0">Login</button>
-    </form>
-  </div>
-</div>
-
-<!-- ACCOUNT MODAL -->
-  <div id="modal-account" class="modal">
-      <div class="modal-content center-align">
-      <h4>Account details</h4><br />
-      <div class="account-details"></div>
-      </div>
-  </div>
-
-<!-- FORGOT PASSWORD MODAL -->
-<div id="modal-forgotPassword" class="modal">
-  <div class="modal-content">
-    <h4>Forgot Password?</h4><br />
-    <form id="forgotPassword-form">
-      <div class="input-field">
-        <input type="email" id="forgotPassword-email" required />
-        <label for="forgotPassword-email">Email address</label>
-      </div>
-      <button class="btn yellow darken-2 z-depth-0">Forgot Password</button>
-    </form>
-  </div>
-</div>
-  <header>
-
-    <h1>BUBBLE SORT</h1>
-  </header>
-
-  <section>
-    <div id="parameters_section">
-      <div class="radio_group">
-        <input type="radio" id="random_array" name="array_setup_choice" value="Create Random Array" checked="checked">
-        <label for="random_array">RANDOM ARRAY</label>
-        <input type="radio" id="user_array" name="array_setup_choice" value="Create User Array">
-        <label for="user_array">CUSTOM ARRAY</label>
-      </div>
-      <div class="array_parameters">
-        <p>Array Size:</p>
-        <input id="size_of_array" type="range" min=5 max=30 step=1 value=20>
-        <button id="create_random_array">Generate a random array</button>
-      </div>
-      <div class="user_input_parameters">
-        <label for="array_integer">Integer: </label>
-        <input type="text" id="array_integer" name="array_integer">
-        <button id="add_integer">ADD</button>
-    </div>
-    <div class="start_array">
-        <button id="start_sort">Start Bubble Sort</button>
-    </div>
-  </div>
-    <div id="array_section">
-    </div>
-  </section>
-
-<section>
-  <div class="radio_group2">
-    <input type="radio" id="view_log" name="view_choice" value="View Log" checked="checked">
-    <label for="view_log">VIEW LOG</label>
-    <input type="radio" id="view_pseudocode" name="view_choice" value="View Pseudocode">
-    <label for="view_pseudocode">VIEW PSEUDOCODE</label>
-  </div>
-
-  <div class="output_views">
-  <div class="log_section" id="log_box">
-    <p id="title">Log</p>
-    <p id="fifth_box"></p>
-    <p id="fourth_box"></p>
-    <p id="third_box"></p>
-    <p id="second_box"></p>
-    <p id="first_box"></p>
-  </div>
-
-
-
-<div class="pseudocode_section" id="pseudocode_box">
-  <p id="first_pseudocode_box">for i=0 to n-2</p>
-  <p id="second_pseudocode_box">for j=0 to n-2</p>
-  <p id="third_pseudocode_box">if Array[j] > Array[j+1]</p>
-  <p id="fourth_pseudocode_box">swap(Array[j], Array[j+1])</p>
-</div>
-</div>
-</section>
-<!-- FOOTER -->
-<footer class="footer bg-dark py5">
-  <div class="container grid grid-3">
-      <div>
-          <h1>Algorithm Simulations</h1>
-          <p>Copyright &copy; 2022</p>
-      </div>
-      
-          <ul>
-              <li><br><a href = "fehimindex3.html">Home</a></li>
-          </ul>
-          <a href = "https://github.com/WSU-4110/Algo-simulation">
-              <img src = "img/github.png" alt = "" style = "position:relative;width:80px;height:80px;"></a>
-      
-  </div>
-</footer>
-
-</section>
-<script src="sortingArrayClass.js"></script>
-<script src="pseudoCodeClass.js"></script>
-<script src="logBoxClass.js"></script>
-<script src="bubblesort.js"></script>
-<script src="bubblesort.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="index.js"></script>
-        <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-analytics.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-auth.js";
@@ -274,7 +85,7 @@
                     });
             });
 
-            // track auth state changes
+            
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                     console.log('user logged in: ', user);
@@ -336,7 +147,7 @@
         });
         }
 
-        //forgot password section
+
         const forgotPasswordForm = document.querySelector('#forgotPassword-form');
         forgotPasswordForm.addEventListener('submit',(e) => {
             e.preventDefault();
@@ -360,7 +171,6 @@
                 return str ===null || str.match(/^ *$/) !== null;
             }
 
-            //basic validation testing for user input
             function Validation(){
                 let emailregex = /^[a-zA-Z0-9]+@(gmail|yahoo|outlook|hotmail)\.com$/;
                 let nameregex = /^[a-zA-Z\s]+$/;
@@ -396,7 +206,6 @@
                     currentUser = JSON.parse(sessionStorage.getItem('user'))
                 }
             }
+
+            
           
-          </script>
-</body>
-</html>

@@ -80,4 +80,3 @@ class SortingArray {
 module.exports= {
   SortingArray:SortingArray
 }
-

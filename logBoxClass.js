@@ -6,6 +6,10 @@ class LogBox {
       this.fourthLogBox = fourthLogBox;
       this.fifthLogBox = fifthLogBox;
     }
+
+    getThirdLogBox(){
+      return this.thirdLogBox;
+    }
   
     updateLogBox(size1, size2, operation, delay) {
       setTimeout( function(){
@@ -18,5 +22,7 @@ class LogBox {
     }
   }
 
+  module.exports= {
+    LogBox:LogBox
+  }
 
-  
