@@ -23,7 +23,8 @@ ul{
 }
 
 li{
-  text-align: left;
+  text-align: center;
+ font-size: x-large;
   color: black;
 }
 
