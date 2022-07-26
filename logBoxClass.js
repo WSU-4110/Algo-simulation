@@ -21,6 +21,8 @@ class LogBox {
       }, delay);
     }
   }
+
   module.exports= {
     LogBox:LogBox
   }
+

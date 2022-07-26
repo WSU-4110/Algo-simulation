@@ -3,19 +3,16 @@ array_size=array_size_input.value;
 var create_random_array=document.getElementById("create_random_array");
 var start_sorting=document.getElementById("start_sort");
 
-
 var random_array_button=document.getElementById("random_array");
 var user_array_button=document.getElementById("user_array");
 var array_integer_field=document.getElementById("array_integer");
 var add_integer_button=document.getElementById("add_integer");
-
 
 var log_box=document.getElementById("log_box");
 var pseudocode_box=document.getElementById("pseudocode_box");
 
 var view_log_button=document.getElementById("view_log");
 var view_pseudocode_button=document.getElementById("view_pseudocode");
-
 
 //for log box
 var firstLogBox=document.getElementById("first_box");
@@ -34,11 +31,9 @@ let pseudoCodeBox = new PseudoBox(firstPseudoCodeBox, secondPseudoCodeBox, third
 let logBox = new LogBox(firstLogBox, secondLogBox, thirdLogBox, fourthLogBox, fifthLogBox);
 let newArray = [];
 
-
 var user_input_array_index = 0;
 var user_input_int=document.getElementById("array_integer");
 var user_int = 0;
-
 
 var arrayBarSizes=[];
 var arrayDivElements=[];
@@ -57,7 +52,6 @@ add_integer_button.addEventListener('click', create_array_user);
 random_array_button.addEventListener('change', function(e)
 {
   if (this.checked) {
-
     newArray=[]
     array_section.innerHTML="";
     array_size=array_size_input.value;
@@ -83,7 +77,6 @@ user_array_button.addEventListener('change', function(e)
   }
 });
 
-
 view_log_button.addEventListener('change', function(e)
 {
   if (this.checked) {
@@ -99,6 +92,7 @@ view_pseudocode_button.addEventListener('change', function(e)
     pseudocode_box.style.display="block";
   }
 });
+
 
 create_random_array.addEventListener("click", create_array);
 array_size_input.addEventListener("input", change_array_size);
@@ -167,7 +161,7 @@ function disable_buttons()
 
 }
 
-var delay=25;
+var delay=70;
 var c_delay=0;
 
 function enable_buttons()
@@ -190,111 +184,46 @@ function enable_buttons()
   },c_delay+=delay);
 }
 
-
-function bubble_sort(pseudoCodeBox, logBox, sortingArray)
+function insertion_sort(pseudoCodeBox, logBox, sortingArray)
 {
   c_delay=0;
-  for(var i=0; i<array_size-1; i++)
+  for(var j=0; j<array_size; j++)
   {
-    pseudoCodeBox.updatePseudoCode(1, c_delay+=delay);
-    for(var j=0; j<array_size-i-1;j++)
-    {
-      pseudoCodeBox.updatePseudoCode(2, c_delay+=delay);
-      sortingArray.updateDivElement(j, "yellow", c_delay+=delay);
-      logBox.updateLogBox(sortingArray.arrayBarSizes[j], sortingArray.arrayBarSizes[j+1], "Comparing", c_delay+=delay);
+    sortingArray.updateDivElement(j, "yellow", c_delay+=delay);
 
+    var key = sortingArray.arrayBarSizes[j];
+    var i = j-1;
+    while (i >=0 && sortingArray.arrayBarSizes[i]>key){
+      sortingArray.updateDivElement(i, "red", c_delay+=delay);
+      sortingArray.updateDivElement(i+1, "red", c_delay+=delay);
 
-      if(sortingArray.arrayBarSizes[j]>sortingArray.arrayBarSizes[j+1])
-      {
+      sortingArray.arrayBarSizes[i+1] = sortingArray.arrayBarSizes[i];
 
-        pseudoCodeBox.updatePseudoCode(3, c_delay+=delay);
-        logBox.updateLogBox(sortingArray.arrayBarSizes[j], sortingArray.arrayBarSizes[j+1], "Swapping", c_delay+=delay);
-        sortingArray.updateDivElement(j, "red", c_delay+=delay);
-        sortingArray.updateDivElement(j+1, "red", c_delay+=delay);
+      sortingArray.updateDivElement(i, "red", c_delay+=delay);
+      sortingArray.updateDivElement(i+1, "red", c_delay+=delay);
 
-        pseudoCodeBox.updatePseudoCode(4, c_delay+=delay);
+      sortingArray.updateDivElement(i, "blue", c_delay+=delay);
 
-        sortingArray.swapDivElements(j, j+1);
-
-        sortingArray.updateDivElement(j, "red", c_delay+=delay);
-        sortingArray.updateDivElement(j+1, "red", c_delay+=delay);
-
-
+      if (i==(j-1)) {
+        sortingArray.updateDivElement(i+1, "yellow", c_delay+=delay);
       }
-      pseudoCodeBox.updatePseudoCode(2, c_delay+=delay);
-      sortingArray.updateDivElement(j, "blue", c_delay+=delay);
+      else {
+        sortingArray.updateDivElement(i+1, "blue", c_delay+=delay);
+      }
+      i-=1;
     }
-    pseudoCodeBox.updatePseudoCode(1, c_delay+=delay);
+    sortingArray.arrayBarSizes[i+1] = key;
+
+    for (var k = 0; k < j; k++) {
+      sortingArray.updateDivElement(k, "green", c_delay+=delay);
+    }
     sortingArray.updateDivElement(j, "green", c_delay+=delay);
   }
-  sortingArray.updateDivElement(0, "green", c_delay+=delay);
-  pseudoCodeBox.updatePseudoCode(1, c_delay+=delay);
   enable_buttons();
 }
-
 
 function run_sorting_algorithm()
 {
   disable_buttons();
-  Quick();
+  insertion_sort(pseudoCodeBox, logBox, sortingArray);
 }
-
-
-function Quick()
-{
-    c_delay=0;
-
-    quick_sort(0,array_size-1);
-
-    enable_buttons();
-}
-c_delay += delay
-
-function quick_partition(start, end)
-{
-    var i = start + 1;
-    var piv = sortingArray.arrayBarSizes[start] ;//make the first element as pivot element.
-    sortingArray.updateDivElement(start, "blue", c_delay += delay);//Color update
-
-        for(var j =start + 1; j <= end ; j++ )
-        {
-            //re-arrange the array by putting elements which are less than pivot on one side and which are greater that on other.
-            if (sortingArray.arrayBarSizes[ j ] < piv)
-            {
-                sortingArray.updateDivElement(j, "red", c_delay);
-                sortingArray.updateDivElement(i, "yellow", c_delay);
-
-                sortingArray.swapDivElements(i, j);
-
-                sortingArray.updateDivElement(i, "blue", c_delay += delay);
-
-                sortingArray.updateDivElement(i, "blue", c_delay += delay);
-                sortingArray.updateDivElement(j, "blue", c_delay += delay);
-                i += 1;
-            }
-    }
-    sortingArray.updateDivElement(start, "blue", c_delay += delay);
-    sortingArray.updateDivElement(i - 1, "blue", c_delay += delay);
-    
-    sortingArray.swapDivElements(start, i-1);
-
-
-    for(var t=start;t<=i;t++)
-    {
-
-        sortingArray.updateDivElement(t, "green", c_delay += delay);
-    }
-
-    return i-1;//return the position of the pivot
-}
-
-function quick_sort(start, end)
-{
-    if( start < end )
-    {
-        //stores the position of pivot element
-        var piv_pos = quick_partition(start, end) ;     
-        quick_sort(start, piv_pos -1);//sorts the left side of pivot.
-        quick_sort(piv_pos +1, end) ;//sorts the right side of pivot.
-    }
- }

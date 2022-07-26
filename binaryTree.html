@@ -2,6 +2,7 @@
 
 <html>
 <head>
+
   <link rel ="stylesheet" href ="utilities.css">
   <link rel="stylesheet" href="classstyle.css">
   <link rel="stylesheet" href="binarytreestyle.css">
@@ -102,6 +103,35 @@
       </div>
       <button class="btn yellow darken-2 z-depth-0">Forgot Password</button>
     </form>
+  <link rel = "stylesheet" href = "utilities.css">
+  <link rel="stylesheet" href="classstyle.css">
+  <link rel="stylesheet" href="binarytreestyle.css">
+
+        <meta charset = "UTF-8">
+        <meta http-equiv = "X-UA-Compatible" content = "IO-edge"></meta>
+        <meta name = "viewport" content = "width=devioce-width, initial-scale = 1.0">
+        <title> Algorithm Simulation | Easy to learn</title>
+</head>
+
+<body>
+<!-- Navbar-->
+<div class = "navbar">
+  <div class = "container flex">
+      <h1 class = "logo">Algorithm Simulations</h1>
+      <nav>
+          <form class="form-inline my-2 my-lg-0">
+              <ul class="navbar-nav mr-auto">
+                  <li class="nav-item mx-1">
+                    <a id = "userlink" class="nav-link" href="#">Username</a>
+                  </li>
+
+                  <li class="nav-item mx-1">
+                      <a id = "signoutlink" class="nav-link" href="#">Sign Out</a>
+                    </li>
+                </ul>
+
+            </form>
+      </nav>
   </div>
 </div>
 
@@ -156,6 +186,7 @@
 <script src="binaryTreeClass.js"></script>
 <script src="treeGenerator.js"></script>
 <script src="binaryTreeTraversals.js"></script>
+
 
 
 <footer class="footer bg-dark py5">
@@ -384,7 +415,6 @@ forgotPasswordForm.addEventListener('submit',(e) => {
             currentUser = JSON.parse(sessionStorage.getItem('user'))
         }
     }
-
   </script>
   </body>
 </html>
