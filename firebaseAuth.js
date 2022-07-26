@@ -1,181 +1,4 @@
-<!DOCTYPE html>
-<html>
-    </style>
-    <head>
-        <link rel = "stylesheet" href = "utilities.css">
-        <link rel = "stylesheet" href = "fehimstyle.css">
-        <meta charset = "UTF-8">
-        <meta http-equiv = "X-UA-Compatible" content = "IO-edge"></meta>
-        <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-        <title> Algorithm Simulation | Easy to learn</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    </head>
 
-    <!-- Login form button-->
-
-    <body>
-        <!-- Navbar-->
-        
-        <div class="navbar">
-            <div class="container flex">
-                    <form class = "form-inline my-2 my-lg-0">
-                        <ul class = "navbar-nav mr-auto">
-                  <li class="logged-in">
-                    <a href="#" class="white-text modal-trigger" data-target="modal-account">Account</a>
-                  </li>
-                  <li class="logged-in">
-                    <a href="#" class="white-text" id="logout">Logout</a>
-                  </li>
-                  <li class="logged-out" style = "display: none;">
-                    <a href="#" class="white-text modal-trigger" data-target="modal-login">Login</a>
-                  </li>
-                  <li class="logged-out" style = "display: none;">
-                    <a href="#" class="white-text modal-trigger" data-target="modal-signup">Sign up</a>
-                  </li>
-                  <li class="logged-out" style = "display: none;">
-                    <a href="#" class="white-text modal-trigger" data-target="modal-forgotPassword">Forgot Password?</a>
-                  </li>
-                </ul>
-                </form>
-                
-            </div>
-        </div>
-        <div class = "logo">
-            <h1 class = "logo">Algorithm Simulations</h1>
-        </div>
-
-          <!-- REGISTER -->
-          <div id="modal-signup" class="modal">
-            <div class="modal-content">
-              <h4>Sign up</h4><br />
-              <form id="signup-form">
-                <div class="input-field">
-                  <input type="email" id="signup-email" required />
-                  <label for="signup-email">Email address</label>
-                </div>
-                <div class="input-field">
-                  <input type="password" id="signup-password" required />
-                  <label for="signup-password">Choose password</label>
-                </div>
-                <div class="input-field">
-                    <input type="password" id="signup-confirmPassword" required />
-                    <label for="signup-confirmPassword">Confirm password</label>
-                  </div>
-                <button class="btn yellow darken-2 z-depth-0">Sign up</button>
-              </form>
-            </div>
-          </div>
-
-          <!-- LOGIN MODAL WINDOW -->
-
-          <div id="modal-login" class="modal">
-            <div class="modal-content">
-              <h4>Login</h4><br />
-              <form id="login-form">
-                <div class="input-field">
-                  <input type="email" id="login-email" required />
-                  <label for="login-email">Email address</label>
-                </div>
-                <div class="input-field">
-                  <input type="password" id="login-password" required />
-                  <label for="login-password">Your password</label>
-                </div>
-                <button class="btn yellow darken-2 z-depth-0">Login</button>
-              </form>
-            </div>
-          </div>
-
-          <!-- ACCOUNT MODAL -->
-            <div id="modal-account" class="modal">
-                <div class="modal-content center-align">
-                <h4>Account details</h4><br />
-                <div class="account-details"></div>
-                </div>
-            </div>
-
-        <!-- FORGOT PASSWORD MODAL -->
-        <div id="modal-forgotPassword" class="modal">
-            <div class="modal-content">
-              <h4>Forgot Password?</h4><br />
-              <form id="forgotPassword-form">
-                <div class="input-field">
-                  <input type="email" id="forgotPassword-email" required />
-                  <label for="forgotPassword-email">Email address</label>
-                </div>
-                <button class="btn yellow darken-2 z-depth-0">Forgot Password</button>
-              </form>
-            </div>
-          </div>
-
-        <section class = "stats">
-            <div class = "container">
-                <h3 class = "stats-heading text-center my-1">
-                    Welcome to a webpage dedicated to providing an interactive visualization of different algorithms.<br>
-                    Our website includes the following features.
-                </h3>
-
-                <div class="grid grid-3 text-center my-4">
-                    <div>
-                        <i class="fas fa-server fa-3x"></i>
-                        <h3>10 Algorithms</h3>
-                    </div>
-                    <div>
-                        <i class="fas fa-upload fa-3x"></i>
-                        <h3>User Input and a Log</h3>
-                    </div>
-                    <div>
-                        <i class="fas fa-project-diagram fa-3x"></i>
-                        <h3>Pseudocode</h3>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Categories/Classes -->
-        <!-- I am using an Abstract Factory Design Pattern to split the algortihms into classes instead of having them all listed on the homepage -->
-        <section class = "languages">
-            <h3 class = "md text-center my-2">
-            </h3>
-            <div class = "flex">
-                <div class = "card">
-                    <a href = "sorting.html">
-                    <h4>Sorting</h4>
-                    <img src = "sorting.gif" style="width:200px;height:200px;"></a>
-                </div>
-                <div class = "card">
-                    <a href = "trees.html">
-                    <h4>Trees</h4>
-                    <img src = "bst.gif" style="width:200px;height:200px;"></a>
-                </div>
-                <div class = "card">
-                    <a href = "pathfinding.html">
-                    <h4>Miscellaneous</h4>
-                    <img src = "pathfinder.gif" style="width:200px;height:200px;"></a>
-                </div>
-            </div>
-        </section>
-
-        <!-- FOOTER -->
-        <footer class="footer bg-dark py5">
-            <div class="container grid grid-3">
-                <div>
-                    <h1>Algorithm Simulations</h1>
-                    <p>Copyright &copy; 2022</p>
-                </div>
-                
-                    <ul>
-                        <li><br><a href = "fehimindex3.html">Home</a></li>
-                    </ul>
-                    <a href = "https://github.com/WSU-4110/Algo-simulation">
-                        <img src = "img/github.png" alt = "" style = "position:relative;width:80px;height:80px;"></a>
-                
-            </div>
-        </footer>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="index.js"></script>
-        <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-analytics.js";
         import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-auth.js";
@@ -259,12 +82,10 @@
                 .catch((error) => {
                         const errorCode = error.code;
                         const errorMessage = error.message;
-
-                        alert(errorMessage);
                     });
             });
 
-            // track auth state changes
+            
             onAuthStateChanged(auth, (user) => {
                 if (user) {
                     console.log('user logged in: ', user);
@@ -326,7 +147,7 @@
         });
         }
 
-        //forgot password section
+
         const forgotPasswordForm = document.querySelector('#forgotPassword-form');
         forgotPasswordForm.addEventListener('submit',(e) => {
             e.preventDefault();
@@ -350,7 +171,6 @@
                 return str ===null || str.match(/^ *$/) !== null;
             }
 
-            //basic validation testing for user input
             function Validation(){
                 let emailregex = /^[a-zA-Z0-9]+@(gmail|yahoo|outlook|hotmail)\.com$/;
                 let nameregex = /^[a-zA-Z\s]+$/;
@@ -386,7 +206,6 @@
                     currentUser = JSON.parse(sessionStorage.getItem('user'))
                 }
             }
+
+            
           
-          </script>
-    </body>
-</html>

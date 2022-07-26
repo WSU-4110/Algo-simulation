@@ -8,47 +8,40 @@ var user_array_button=document.getElementById("user_array");
 var array_integer_field=document.getElementById("array_integer");
 var add_integer_button=document.getElementById("add_integer");
 
+var pseudocode_box=document.getElementById("pseudocode_box");
 
-// var log_box=document.getElementById("log_box");
-// var pseudocode_box=document.getElementById("pseudocode_box");
+//for pseudocode box
+var firstPseudoCodeBox=document.getElementById("first_pseudocode_box");
+var secondPseudoCodeBox=document.getElementById("second_pseudocode_box");
+var thirdPseudoCodeBox=document.getElementById("third_pseudocode_box");
+var fourthPseudoCodeBox=document.getElementById("fourth_pseudocode_box");
+var fifthPseudoCodeBox=document.getElementById("fifth_pseudocode_box");
 
-// var view_log_button=document.getElementById("view_log");
-// var view_pseudocode_button=document.getElementById("view_pseudocode");
-
-
-// var first_box=document.getElementById("first_box");
-// var second_box=document.getElementById("second_box");
-// var third_box=document.getElementById("third_box");
-// var fourth_box=document.getElementById("fourth_box");
-// var fifth_box=document.getElementById("fifth_box");
-
-// var first_pseudocode_box=document.getElementById("first_pseudocode_box");
-// var second_pseudocode_box=document.getElementById("second_pseudocode_box");
-// var third_pseudocode_box=document.getElementById("third_pseudocode_box");
-// var fourth_pseudocode_box=document.getElementById("fourth_pseudocode_box");
+//log and pseudocode objects
+let pseudoCodeBox = new PseudoBox(firstPseudoCodeBox, secondPseudoCodeBox, thirdPseudoCodeBox, fourthPseudoCodeBox, fifthPseudoCodeBox);
+let newArray = [];
 
 var user_input_array_index = 0;
 var user_input_int=document.getElementById("array_integer");
 var user_int = 0;
 
-var array_bar_sizes=[];
+var arrayBarSizes=[];
+var arrayDivElements=[];
 
-function Element (size, div) {
-  this.size = size;
-  this.div = div;
-}
+var arraySection=document.getElementById("array_section");
+arraySection.style="flex-direction:row";
+
+let sortingArray = new SortingArray(arrayBarSizes, arrayDivElements, array_size, arraySection);
 
 array_integer_field.disabled=true;
 add_integer_button.disabled=true;
-
-// pseudocode_box.style.display="none";
-
 
 add_integer_button.addEventListener('click', create_array_user);
 
 random_array_button.addEventListener('change', function(e)
 {
   if (this.checked) {
+    newArray=[]
     array_section.innerHTML="";
     array_size=array_size_input.value;
     array_size_input.disabled=false;
@@ -62,6 +55,7 @@ random_array_button.addEventListener('change', function(e)
 user_array_button.addEventListener('change', function(e)
 {
   if (this.checked) {
+    newArray = [];
     array_section.innerHTML="";
     user_input_array_index = 0;
     array_size=0;
@@ -72,76 +66,55 @@ user_array_button.addEventListener('change', function(e)
   }
 });
 
-
-// view_log_button.addEventListener('change', function(e)
-// {
-//   if (this.checked) {
-//     pseudocode_box.style.display="none";
-//     log_box.style.display="block";
-//   }
-// });
-
-// view_pseudocode_button.addEventListener('change', function(e)
-// {
-//   if (this.checked) {
-//     log_box.style.display="none";
-//     pseudocode_box.style.display="block";
-//   }
-// });
-
-
-var array_section=document.getElementById("array_section");
-array_section.style="flex-direction:row";
-
 create_random_array.addEventListener("click", create_array);
 array_size_input.addEventListener("input", change_array_size);
 
 function create_array()
 {
-  array_section.innerHTML="";
-
   for(var i = 0; i < array_size; i++)
   {
+    newArray[i]=Math.floor(Math.random() * 90) + 1;
+  }
 
-    array_bar_sizes[i] = new Element (
-      Math.floor(Math.random() * 90) + 1,
-      document.createElement("div")
-    )
+  sortingArray.setArraySize(array_size);
+  sortingArray.setArrayBarSizes(newArray);
+  sortingArray.generateArrayElements();
+}
 
-    array_section.appendChild(array_bar_sizes[i].div);
-    array_bar_sizes[i].div.style=" margin: 0% 0.1%; background-color:blue; width:" + (100/array_size-0.2) + "%; height:" + (array_bar_sizes[i].size) + "%;";
+
+function create_array_user()
+{  
+array_integer_field=document.getElementById('array_integer');
+  var userString = array_integer_field.value;
+  var integer_array=userString.split(" ");
+
+  array_for_sorting = [];
+  var allIntegers = true;
+
+//Allows the user to take multiple inputs at once
+for(var i = 0; i < integer_array.length; i++)
+{
+  var number_to_be_added = parseInt(integer_array[i]);
+  array_for_sorting[i] = number_to_be_added;
+  if (Number.isNaN(number_to_be_added))
+  {
+    allIntegers = false;
   }
 }
 
-function create_array_user()
-{
-  array_integer_field=document.getElementById("array_integer");
-
-  user_int=parseInt(array_integer_field.value);
-
-  if(Number.isInteger(user_int) && user_int > 0)
+array_size = array_for_sorting.length;
+  if (allIntegers)
   {
-
-    array_bar_sizes[user_input_array_index] = new Element (
-      user_int,
-      document.createElement("div")
-    )
-    array_size++;
-    user_input_array_index++;
-
-    array_section.innerHTML="";
-    for(var i = 0; i < array_size; i++)
-    {
-      array_section.appendChild(array_bar_sizes[i].div);
-      array_bar_sizes[i].div.style=" margin: 0% 0.1%; background-color:blue; width:" + (100/array_size-0.2) + "%; height:" + (array_bar_sizes[i].size) + "%;";
-    }
-  }
+    sortingArray.setArraySize(array_for_sorting.length);
+    sortingArray.setArrayBarSizes(array_for_sorting);
+    sortingArray.generateArrayElements();
+  } 
 }
 
 function change_array_size()
 {
   array_size=array_size_input.value;
-  create_array();
+  create_array(sortingArray);
 }
 
 window.onload=change_array_size();
@@ -160,19 +133,12 @@ function disable_buttons()
 
 }
 
-var delay=100
+var delay=70;
 var c_delay=0;
-
-function update_div(section, height, color)
-{
-  window.setTimeout(function(){
-    section.style=" margin:0% 0.1%; width:"+ (100/array_size-0.2) + "%; height:" + height + "%; background-color:" + color + ";";
-  },c_delay+=delay);
-}
 
 function enable_buttons()
 {
-  window.setTimeout(function(){
+  setTimeout(function(){
     random_array_button.disabled=false;
     user_array_button.disabled=false;
     if(random_array_button.checked)
@@ -190,159 +156,69 @@ function enable_buttons()
   },c_delay+=delay);
 }
 
-function merge_sort_start()
-{
-    let array1 = merge_sort(array_bar_sizes);
-    if (array_size == 1) {
-      update_div(array_bar_sizes[0].div, array_bar_sizes[0].size, "green");
-    }
-
-    enable_buttons();
-
-}
-
-function merge_sort(unsortedArray)
-{
-    if (unsortedArray.length == 1) return unsortedArray;
-
-    const middle_index = Math.floor(unsortedArray.length / 2);
-    const left_array = unsortedArray.slice(0, middle_index);
-    const right_array = unsortedArray.slice(middle_index, unsortedArray.length);
-
-    return merge_sort_helper(merge_sort(left_array), merge_sort(right_array));
-
-}
-
-function merge_sort_helper(left_array, right_array)
+function Merge()
 {
     c_delay=0;
 
-    let temp = [];
+    merge_partition(0,array_size-1);
 
-    while (left_array.length && right_array.length) {
-      update_div(left_array[0].div, left_array[0].size, "yellow");
-      if (left_array[0].size <= right_array[0].size){
-        update_div(left_array[0].div, left_array[0].size, "blue");
-        temp.push(left_array.shift());
-      }
-      else {
-        update_div(left_array[0].div, left_array[0].size, "red");
-        update_div(right_array[0].div, right_array[0].size, "red");
-
-        tempDiv = left_array[0].div;
-        left_array[0].div = right_array[0].div;
-        right_array[0].div = tempDiv;
-
-        update_div(left_array[0].div, left_array[0].size, "blue");
-        update_div(right_array[0].div, right_array[0].size, "blue");
-
-        temp.push(right_array.shift())
-      }
-    }
-
-    while (left_array.length) {
-      update_div(left_array[0].div, left_array[0].size, "yellow");
-      update_div(left_array[0].div, left_array[0].size, "blue");
-      temp.push(left_array.shift());
-    }
-
-    while (right_array.length) {
-     update_div(right_array[0].div, right_array[0].size, "yellow");
-     update_div(right_array[0].div, right_array[0].size, "blue");
-     temp.push(right_array.shift());
-    }
-
-    console.log("TEMP ARRAY: ");
-    for (var i = 0; i < temp.length-1; i++) {
-      console.log(temp[i].size);
-    }
-
-    return temp;
+    enable_buttons();
 }
 
+function merge_partition(left, right) {
+    if (left < right) {
+        var mid = Math.floor((left + right) / 2);
+        sortingArray.updateDivElement(mid, "yellow", c_delay+=delay);
 
-// function update_log1(size1, size2)
-// {
-//   window.setTimeout(function(){
-//     step_log();
-//     first_box.innerHTML="Comparing size " + size1 + " with size " + size2 + ".";
+        pseudoCodeBox.updatePseudoCode(1, c_delay+=delay);
+        merge_partition(left, mid);
+        pseudoCodeBox.updatePseudoCode(2, c_delay+=delay);
+        merge_partition(mid+1, right);
 
+        pseudoCodeBox.updatePseudoCode(3, c_delay+=delay);
+        pseudoCodeBox.updatePseudoCode(6, c_delay+=delay);
+        merge_sort(left, mid, right);
+    }
+}
 
-//   },c_delay+=delay);
-// }
+function merge_sort(left, mid, right)
+{
+  var l = left;
+  var m = mid + 1;
 
-// function update_log2(size1, size2)
-// {
-//   window.setTimeout(function(){
-//     step_log();
-//     first_box.innerHTML="Swapping size " + size1 + " with size " + size2 + ".";
+  var Arr = [];
+  var k = 0;
 
+  for (var i = left; i <= right; i++) {
+    pseudoCodeBox.updatePseudoCode(4, c_delay+=delay);
+    if (l > mid) {
+      Arr[k++] = sortingArray.arrayBarSizes[m++];
+      sortingArray.updateDivElement(m-1, "red", c_delay+=delay);
+    }
+    else if (m > right) {
+      Arr[k++] = sortingArray.arrayBarSizes[l++];
+      sortingArray.updateDivElement(l-1, "red", c_delay+=delay);
+    }
+    else if (sortingArray.arrayBarSizes[l] < sortingArray.arrayBarSizes[m]) {
+      Arr[k++] = sortingArray.arrayBarSizes[l++];
+      sortingArray.updateDivElement(l-1, "red", c_delay+=delay);
+    }
+    else {
+      Arr[k++] = sortingArray.arrayBarSizes[m++];
+      sortingArray.updateDivElement(m-1, "red", c_delay+=delay);
+    }
+  }
 
-//   },c_delay+=delay);
-// }
+  for (var j = 0; j < k; j++) {
+    pseudoCodeBox.updatePseudoCode(5, c_delay+=delay);
+    sortingArray.arrayBarSizes[left++] = Arr[j];
+    sortingArray.updateDivElement(left-1, "green", c_delay+=delay);
+  }
+}
 
-// function reset_pseudocode()
-// {
-
-//  first_pseudocode_box.style="background-color:#f5ef4e;";
-//  second_pseudocode_box.style="background-color:#f5ef4e;";
-//  third_pseudocode_box.style="background-color:#f5ef4e;";
-//  fourth_pseudocode_box.style="background-color:#f5ef4e;";
-
-// }
-
-// function update_pseudocode1()
-// {
-//   window.setTimeout(function(){
-//     reset_pseudocode();
-//     first_pseudocode_box.style="background-color:#ffff66;";
-//   },c_delay+=delay);
-// }
-
-// function update_pseudocode2()
-// {
-//   window.setTimeout(function(){
-//     reset_pseudocode();
-
-//     second_pseudocode_box.style="background-color:#ffff66;";
-//   },c_delay+=delay);
-// }
-
-// function update_pseudocode3()
-// {
-//   window.setTimeout(function(){
-//     reset_pseudocode();
-//     third_pseudocode_box.style="background-color:#ffff66;";
-//   },c_delay+=delay);
-// }
-
-// function update_pseudocode4()
-// {
-//   window.setTimeout(function(){
-//     reset_pseudocode();
-//     fourth_pseudocode_box.style="background-color:#ffff66;";
-//   },c_delay+=delay);
-// }
-
-// function finish_pseudocode()
-// {
-//   window.setTimeout(function(){
-//     reset_pseudocode();
-//     first_pseudocode_box.style="background-color:#f5ef4e;";
-//   },c_delay+=delay);
-// }
-
-
-// function step_log()
-// {
-//   fifth_box.innerHTML=fourth_box.innerHTML;
-//   fourth_box.innerHTML=third_box.innerHTML;
-//   third_box.innerHTML=second_box.innerHTML;
-//   second_box.innerHTML=first_box.innerHTML;
-// }
 
 function run_sorting_algorithm()
 {
   disable_buttons();
-  merge_sort_start();
+  Merge();
 }

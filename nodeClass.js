@@ -18,6 +18,11 @@ class Node {
       return this.value;
     }
 
+    getLeft()
+    {
+      return this.left;
+    }
+
     createStructure(){
 
       let information;
@@ -72,4 +77,8 @@ class Node {
 
 
 }
+}
+
+module.exports= {
+  Node:Node
 }

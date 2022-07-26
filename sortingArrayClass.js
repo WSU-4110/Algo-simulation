@@ -45,6 +45,7 @@ class SortingArray {
   clearArraySection(){
     this.arraySection.innerHTML="";
   }
+
 //Shows the numbers on the array
   generateArrayElements(){
     this.clearArraySection();
@@ -79,4 +80,3 @@ class SortingArray {
 module.exports= {
   SortingArray:SortingArray
 }
-

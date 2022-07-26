@@ -3,8 +3,11 @@ function getTreeData(sizeOfTree){
     var numbers = [];
     var testInt;
     var added = false;
-  
+    
+    //creates tree size
     var treeSize = parseInt(sizeOfTree, 10);
+
+    //adds non repeating integers to number
     for(var i = 0; i < treeSize; i++)
     {
       added = false;
@@ -19,26 +22,27 @@ function getTreeData(sizeOfTree){
       }
     }
   
-  
+    //creates tree object
     var node = new Node(numbers[0]);
-    var treeet = new BinaryTree(node);
+    var newBinaryTree = new BinaryTree(node);
   
     for(var i = 1; i < numbers.length; i++)
     {
-      treeet.insert(new Node(numbers[i]), treeet.root);
+      newBinaryTree.insert(new Node(numbers[i]), newBinaryTree.root);
     }
     
-    var information = [treeet.root.createStructure()];
-    console.log(numbers);
-        console.log(information);
+    var information = [newBinaryTree.root.createStructure()];
+   
     return information;
   }
   
+  //for random nums
   function getRandomInteger(max)
   {
     return Math.floor(Math.random() * (max)) + 1;
   }
   
+  //to check if integer is in array yet
   function checkInteger(usedIntegers, newInteger)
   {
     var used = false;
@@ -59,6 +63,7 @@ function getTreeData(sizeOfTree){
     }
   }
 
+  //for testing
   module.exports= {
     getRandomInteger,
     checkInteger
