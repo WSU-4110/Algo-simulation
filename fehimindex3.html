@@ -118,7 +118,7 @@
                 <div class="grid grid-3 text-center my-4">
                     <div>
                         <i class="fas fa-server fa-3x"></i>
-                        <h3>15 Algorithms</h3>
+                        <h3>10 Algorithms</h3>
                     </div>
                     <div>
                         <i class="fas fa-upload fa-3x"></i>
@@ -132,79 +132,26 @@
             </div>
         </section>
 
-        <!-- Languages -->
+        <!-- Categories/Classes -->
+        <!-- I am using an Abstract Factory Design Pattern to split the algortihms into classes instead of having them all listed on the homepage -->
         <section class = "languages">
             <h3 class = "md text-center my-2">
-                Algorithms
             </h3>
-            <div class = "container flex">
+            <div class = "flex">
                 <div class = "card">
-                    <a href = "graphs.html">
-                    <h4>Graphs</h4>
-                    <img src = "img/dgraph2.png" alt = ""></a>
+                    <a href = "sorting.html">
+                    <h4>Sorting</h4>
+                    <img src = "sorting.gif" style="width:200px;height:200px;"></a>
                 </div>
                 <div class = "card">
-                    <a href = "bubblesort.html">
-                    <h4>Bubblesort</h4>
-                    <img src = "img/originals/bubblesort.svg" alt = ""></a>
+                    <a href = "trees.html">
+                    <h4>Trees</h4>
+                    <img src = "bst.gif" style="width:200px;height:200px;"></a>
                 </div>
                 <div class = "card">
-                    <a href = "mergeSort.html">
-                    <h4>Merge Sort</h4>
-                    <img src = "img/mergeSort.png" alt = ""></a>
-                </div>
-                <div class = "card">
-                    <a href = "quickSort.html">
-                    <h4>Quicksort</h4>
-                    <img src = "img/QuickSort.png" alt = ""></a>
-                </div>
-                <div class = "card">
-                    <a href = "johnsonTrotter.html">
-                    <h4>Johnson-Trotter</h4>
-                    <img src = "img/johnsonTrotter.png" alt = ""></a>
-                </div>
-                <div class = "card">
-                    <a href = "heapSort.html">
-                    <h4>HeapSort</h4>
-                    <img src = "img/heapSort.png" alt = ""></a>
-                </div>
-                <div class = "card">
-                    <a href = "preOrderTreeTraversal.html">
-                    <h4>Pre Order Tree Traversal</h4>
-                    <img src = "img/preOrderTraversal.png" alt = ""></a>
-                </div>
-                <div class = "card">
-                    <a href = "inOrderTreeTraversal.html">
-                    <h4>In Order Tree Traversal</h4>
-                    <img src = "img/inOrderTraversal.png" alt = ""></a>
-                </div>
-                <div class = "card">
-                    <a href = "postOrderTreeTraversal.html">
-                    <h4>Post Order Tree Traversal</h4>
-                    <img src = "img/postOrderTraversal.png" alt = ""></a>
-                </div>
-                <div class = "card">
-                    <a href = "kruskals.html">
-                    <h4>Kruskal's Algorithm</h4>
-                    <img src = "img/kruskals.png" alt = ""></a>
-                </div>
-                <div class = "card">
-                    <a href = "prims.html">
-                    <h4>Prim's Algorithm</h4>
-                    <img src = "img/prims.png" alt = ""></a>
-                </div>
-                <div class = "card">
-                    <a href = "floydWarshall.html">
-                    <h4>Floyd-Warshall's Algorithm</h4>
-                    <img src = "img/floyds.png" alt = ""></a>
-                </div>
-                <div class = "card">
-                    <a href = "bfs.html">
-                    <h4>BFS</h4></a>
-                </div>
-                <div class = "card">
-                    <a href = "dfs.html">
-                    <h4>DFS</h4></a>
+                    <a href = "pathfinding.html">
+                    <h4>Miscellaneous</h4>
+                    <img src = "pathfinder.gif" style="width:200px;height:200px;"></a>
                 </div>
             </div>
         </section>
@@ -312,6 +259,8 @@
                 .catch((error) => {
                         const errorCode = error.code;
                         const errorMessage = error.message;
+
+                        alert(errorMessage);
                     });
             });
 

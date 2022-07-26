@@ -139,6 +139,7 @@
 </div>
 
 
+
 <section>
   <div class = "radio_group2">
     <form action="#">
@@ -287,6 +288,7 @@ import { getFirestore, collection } from "https://www.gstatic.com/firebasejs/9.8
         .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                alert(errorMessage);
             });
     });
 
