@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <link rel = "stylesheet" href = "utilities.css">
+  <link rel="stylesheet" href="classstyle.css">
+        <meta charset = "UTF-8">
+        <meta http-equiv = "X-UA-Compatible" content = "IO-edge"></meta>
+        <meta name = "viewport" content = "width=devioce-width, initial-scale = 1.0">
+        <title> Algorithm Simulation | Easy to learn</title>
+</head>
+
+<body>
+<!-- Navbar-->
+<div class = "navbar">
+  <div class = "container flex">
+      <h1 class = "logo">Algorithm Simulations</h1>
+      <nav>
+          <form class="form-inline my-2 my-lg-0">
+              <ul class="navbar-nav mr-auto">
+                  <li class="nav-item mx-1">
+                    <a id = "userlink" class="nav-link" href="#">Username</a>
+                  </li>
+
+                  <li class="nav-item mx-1">
+                      <a id = "signoutlink" class="nav-link" href="#">Sign Out</a>
+                    </li>
+                </ul>
+
+            </form>
+      </nav>
+  </div>
+</div>
+<!-- HEADER -->
+  <header>
+
+    <h1>HEAPSORT</h1>
+  </header>
+
+  <!-- FOOTER -->
+<footer class="footer bg-light py5">
+    <div class="container grid grid-3">
+        <div>
+            <h1>Algorithm Simulations</h1>
+            <p>Copyright &copy; 2022</p>
+        </div>
+        <nav>
+            <ul>
+                <li><a href = "homeindex.html">Home</a></li>
+            </ul>
+            <a href = "https://github.com/WSU-4110/Algo-simulation">
+                <img src = "img/github.png" alt = "" style = "position:relative;width:80px;height:80px;right:-320px;"></a>
+        </nav>
+    </div>
+  </footer>
+  <script>
+
+    //REFERENCES//
+    let userlink = document.getElementById('userlink');
+    let signoutlink = document.getElementById('signoutlink');
+    let header = document.getElementById('hh');
+    var currentUser = null;
+
+    //FUNCTIONS//
+    function getUsername(){
+        let keepLoggedIn = localStorage.getItem("keepLoggedIn");
+        if(keepLoggedIn == "yes"){
+            currentUser = JSON.parse(localStorage.getItem('user'))
+        }
+        else{
+            currentUser = JSON.parse(sessionStorage.getItem('user'))
+        }
+    }
+
+    function Signout(){
+        sessionStorage.removeItem('user');
+        localStorage.removeItem('user');
+        localStorage.removeItem('keepLoggedIn');
+        window.location = "homeindex.html";
+    }
+
+    //WINDOWS LOAD
+
+    window.onload = function(){
+        getUsername();
+        if(currentUser == null){
+            userlink.innerText = "Create New Account";
+            userlink.classList.replace("nav-link", "btn");
+            userlink.classList.add("btn-primary");
+            userlink.href = "testregisterv4.html";
+
+            signoutlink.innerText = "Login";
+            signoutlink.classList.replace("nav-link", "btn");
+            signoutlink.classList.add("btn-success");
+            signoutlink.href = "testlogin4.html";
+        }
+        
+        else{
+            userlink.innerText = currentUser.email;
+            header.innerText = "";
+            userlink.classList.replace("btn", "nav-link");
+            userlink.classList.add("btn-primary");
+            userlink.href = "#";
+
+            signoutlink.innerText = "Sign Out";
+            signoutlink.classList.replace("btn", "nav-link");
+            signoutlink.classList.remove("btn-success");
+            signoutlink.href = "javascript:Signout()";
+        }
+    }
+  </script>
+</body>

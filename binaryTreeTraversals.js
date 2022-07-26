@@ -85,6 +85,7 @@ function change_tree_size(){
   update(root);
 }
 
+//method to draw tree structure in js came from d3.js Tips and Tricks by Malcolm Maclean
 //update, called every time tree needs to be redrawn
 function update(source) {
 g.innerHTML="";
@@ -324,6 +325,7 @@ function inOrder(treeroot){
   }
 }
 
+//adds event listener for log box radio button
 view_log_button.addEventListener('change', function(e)
 {
   if (this.checked) {
@@ -332,6 +334,7 @@ view_log_button.addEventListener('change', function(e)
   }
 });
 
+//adds event listener for pseudocode radio button
 view_pseudocode_button.addEventListener('change', function(e)
 {
   if (this.checked) {
@@ -340,6 +343,7 @@ view_pseudocode_button.addEventListener('change', function(e)
   }
 });
 
+//set psuedocode box for in order
 function setPseudoCodeInOrder(){
   firstPseudoCodeBox.innerHTML="inorder(tree)";
   secondPseudoCodeBox.innerHTML="begin";
@@ -350,6 +354,7 @@ function setPseudoCodeInOrder(){
   seventhPseudoCodeBox.innerHTML="end";
 }
 
+//sets psuedocde box for pre order
 function setPseudoCodePreOrder(){
   firstPseudoCodeBox.innerHTML="preorder(tree)";
   secondPseudoCodeBox.innerHTML="begin";
@@ -360,6 +365,7 @@ function setPseudoCodePreOrder(){
   seventhPseudoCodeBox.innerHTML="end";
 }
 
+//sets psuedocode box for post order
 function setPseudoCodePostOrder(){
   firstPseudoCodeBox.innerHTML="postorder(tree)";
   secondPseudoCodeBox.innerHTML="begin";
@@ -370,6 +376,7 @@ function setPseudoCodePostOrder(){
   seventhPseudoCodeBox.innerHTML="end";
 }
 
+//resets pesudocode box
 function resetPsuedoCode(){
   firstPseudoCodeBox.style="background-color:#f5ef4e;";
   secondPseudoCodeBox.style="background-color:#f5ef4e;";
@@ -380,9 +387,15 @@ function resetPsuedoCode(){
   seventhPseudoCodeBox.style="background-color:#f5ef4e;";
 }
 
+//updates log box
 function incrementLogBox(){
   fifthLogBox.innerHTML=fourthLogBox.innerHTML;
   fourthLogBox.innerHTML=thirdLogBox.innerHTML;
   thirdLogBox.innerHTML=secondLogBox.innerHTML;
   secondLogBox.innerHTML=firstLogBox.innerHTML;
 }
+
+//draws tree on load
+window.onload=change_tree_size();
+//hides pseudocode box on load
+pseudocode_box.style.display="none";
