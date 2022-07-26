@@ -2,7 +2,7 @@
 :root{
     --primary-color: #3d97e5;
     --secondary-color: #33a6e9;
-    --dark-color: #025c1d;
+    --dark-color: #4108fe;
     --light-color: #989898;
 }
 
@@ -23,7 +23,7 @@ ul{
 }
 
 li{
-  text-align: left;
+  text-align: center;
   color: black;
 }
 
@@ -44,6 +44,14 @@ p{
 
 img{
     width: 100%
+}
+.logo{
+    margin-top: -90px;
+    padding-top: 50px;
+    text-align: center;
+    background-color: var(--primary-color);
+    color: #fff;
+    height: 200px;
 }
 
 .navbar{
@@ -134,7 +142,8 @@ section .pseudocode_section
 /* footer */
 
 .footer .social a{
-    padding-bottom: 0%;
+    text-align: center;
+    padding-top: -50px;
   
 }
 
