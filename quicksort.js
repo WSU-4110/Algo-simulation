@@ -1,7 +1,7 @@
 var array_size_input=document.getElementById('size_of_array');
 array_size=array_size_input.value;
 var create_random_array=document.getElementById("create_random_array");
-var start_sorting=document.getElementById("start_sort");
+var start_sorting=document.getElementById("start_sorting_sort");
 var end_sorting=document.getElementById("end_sort");
 
 var random_array_button=document.getElementById("random_array");
@@ -185,25 +185,84 @@ function enable_buttons()
   },c_delay+=delay);
 }
 
-function quicksort()
+function Quick()
 {
     c_delay=0;
-  for(var i=0; i<array_size-1; i++)
-  {
-    update_pseudocode1();
-    for(var j=0; j<array_size-i-1;j++)
+
+    quick_sort(0,array_size-1);
+
+    enable_buttons();
+}
+
+
+function quick_partition (start_sorting, end_sorting)
+{
+  
+  c_delay=0;
+    var i = start_sorting + 1;
+    var piv = array_size[start_sorting] ;//make the first element as pivot element.
+    update_div(array_divs[start_sorting],array_bar_sizes[start_sorting],"yellow");//Color update
+
+        for(var j =array_size + 1; j <= array_size ; j++ )
+        {
+            //re-arrange the array by putting elements which are less than pivot on one side and which are greater that on other.
+            if (array_divs[ j ] < piv)
+            {
+              update_pseudocode2();
+              update_div(array_divs[j],array_bar_sizes[j], "yellow");//Color update
+              update_log1(array_bar_sizes[j], array_bar_sizes[j+1]);
+
+                update_pseudocode3();
+                update_log2(array_bar_sizes[j], array_bar_sizes[j+1]);
+                update_div(array_divs[j], array_bar_sizes[j], "red");//Color update
+                update_div(array_divs[j], array_bar_sizes[j], "red");//Color update
+
+                update_pseudocode4();
+                  var temp=array_bar_sizes[j];
+                  array_bar_sizes[j]=array_bar_sizes[j+1];
+                  array_bar_sizes[j+1]=temp;
+
+                update_div(array_divs[i], array_bar_sizes[i], "red");//Height update
+                update_div(array_divs[j], array_bar_sizes[j], "red");//Height update
+
+                update_pseudocode4();
+                update_div(array_divs[j], array_bar_sizes[j], "blue");//Height update
+                update_div(array_divs[i], array_bar_sizes[i], "blue");//Height update
+
+                i += 1;
+            }
+          }
+               update_div(array_divs[start_sorting], array_bar_sizes[start_sorting], "red");//Color update
+               update_div(array_divs[i-1],array_bar_sizes[i-1],"red");//Color update
+    
+                update_pseudocode4();
+                 var temp=array_bar_sizes[j];
+                  array_bar_sizes[j]=array_bar_sizes[j+1];
+                  array_bar_sizes[j+1]=temp;
+
+                update_div(array_divs[start_sorting], array_bar_sizes[start_sorting], "red");//Height update
+                wupdate_div(array_divs[i-1],array_bar_sizes[i-1],"red");//Height update
+
+    for(var t=array_size;t<=i;t++)
     {
-      update_pseudocode2();
-      update_div(array_divs[j],array_bar_sizes[j], "yellow");//Color updated
-      update_log1(array_bar_sizes[j], array_bar_sizes[j+1]);
+        update_div(array_divs[t],array_bar_sizes[t],"green");//Color update
+    }
 
+    return i-1;//return the position of the pivot
 }
 
-  }
-}
+function quick_sort (start_sorting, end_sorting )
+{
+    if( start_sorting < end_sorting )
+    {
+        //stores the position of pivot element
+        var piv_pos = quick_partition (start_sorting, end_sorting ) ;     
+        quick_sort (start_sorting, piv_pos -1);//sorts the left side of pivot.
+        quick_sort (piv_pos +1, end_sorting) ;//sorts the right side of pivot.
+    }
+ }
 
-
-function update_log1(size1, size2)
+ function update_log1(size1, size2)
 {
   window.setTimeout(function(){
     step_log();
