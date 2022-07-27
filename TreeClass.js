@@ -53,26 +53,6 @@ class TreeClass {
   generatePruferSequence()
   {
     this.pruferSequence=[];
-    var nextInteger;
-    var added = false;
-    for(var i = 0; i < this.numberOfNodes - 2; i++)
-    {
-      added = false;
-      while (!added)
-      {
-        nextInteger = this.getRandomInteger(this.numberOfNodes);
-        if(!this.checkInteger(this.pruferSequence , nextInteger))
-        {
-          this.pruferSequence[i]=nextInteger;
-          added = true;
-        }
-      }
-    }
-  }
-
-  generatePruferSequence2()
-  {
-    this.pruferSequence=[];
     for(var i = 0; i < this.numberOfNodes - 2; i++)
     {
       this.pruferSequence[i]=this.getRandomInteger(this.numberOfNodes);
@@ -100,7 +80,7 @@ class TreeClass {
   generateEdges()
   {
 
-    this.generatePruferSequence2();
+    this.generatePruferSequence();
 
     this.copiedPrufer = [];
     this.orderedSet = [];

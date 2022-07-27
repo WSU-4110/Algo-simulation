@@ -161,7 +161,7 @@ function disable_buttons()
 
 }
 
-var delay=70;
+var delay=100;
 var c_delay=0;
 
 function enable_buttons()
@@ -187,17 +187,22 @@ function enable_buttons()
 function insertion_sort(pseudoCodeBox, logBox, sortingArray)
 {
   c_delay=0;
-  for(var j=0; j<array_size; j++)
+
+  for(var j=0; j < array_size; j++)
   {
     sortingArray.updateDivElement(j, "yellow", c_delay+=delay);
 
     var key = sortingArray.arrayBarSizes[j];
     var i = j-1;
-    while (i >=0 && sortingArray.arrayBarSizes[i]>key){
+    logBox.updateLogBox(sortingArray.arrayBarSizes[j], sortingArray.arrayBarSizes[j+1], "Comparing", c_delay+=delay);
+    while (i >= 0 && sortingArray.arrayBarSizes[i] > key){
+
+
       sortingArray.updateDivElement(i, "red", c_delay+=delay);
       sortingArray.updateDivElement(i+1, "red", c_delay+=delay);
-
-      sortingArray.arrayBarSizes[i+1] = sortingArray.arrayBarSizes[i];
+      logBox.updateLogBox(sortingArray.arrayBarSizes[i + 1], sortingArray.arrayBarSizes[i], "Swapping", c_delay+=delay);
+      sortingArray.arrayBarSizes[i+1] = sortingArray.arrayBarSizes[i]
+ 
 
       sortingArray.updateDivElement(i, "red", c_delay+=delay);
       sortingArray.updateDivElement(i+1, "red", c_delay+=delay);
@@ -207,11 +212,13 @@ function insertion_sort(pseudoCodeBox, logBox, sortingArray)
       if (i==(j-1)) {
         sortingArray.updateDivElement(i+1, "yellow", c_delay+=delay);
       }
+
       else {
         sortingArray.updateDivElement(i+1, "blue", c_delay+=delay);
       }
       i-=1;
     }
+
     sortingArray.arrayBarSizes[i+1] = key;
 
     for (var k = 0; k < j; k++) {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<!--Done-->
 <html>
   <head>
     <link rel ="stylesheet" href ="utilities.css">
@@ -109,13 +109,26 @@
   </header>
 
   <section>
-    <div id="parameters_section">
-      <div class="radio_group">
-        <input type="radio" id="random_array" name="array_setup_choice" value="Create Random Array" checked="checked">
-        <label for="random_array">RANDOM ARRAY</label>
-        <input type="radio" id="user_array" name="array_setup_choice" value="Create User Array">
-        <label for="user_array">CUSTOM ARRAY</label>
-      </div>
+    <div id = "parameters_section">
+      <div class = "radio_group">
+        <form action="#">
+          <p>
+            <label>
+              <input name="array_setup_choice"  id="random_array" type="radio" value="Create Random Array" checked="checked"/>
+              <span>RANDOM ARRAY</span>
+            </label>
+          </p>
+          <p>
+            <label>
+              <input name="array_setup_choice" id="user_array" type="radio" value="Create User Array"/>
+              <span>CUSTOM ARRAY</span>
+            </label>
+          </p> 
+        </form>
+    </div>
+  </div>
+
+
       <div class="array_parameters">
         <p>Array Size:</p>
         <input id="size_of_array" type="range" min=5 max=30 step=1 value=20>
@@ -136,11 +149,22 @@
 
 <section>
   <div class="radio_group2">
-    <input type="radio" id="view_log" name="view_choice" value="View Log" checked="checked">
-    <label for="view_log">VIEW LOG</label>
-    <input type="radio" id="view_pseudocode" name="view_choice" value="View Pseudocode">
-    <label for="view_pseudocode">VIEW PSEUDOCODE</label>
-  </div>
+    <div class = "radio_group2">
+      <form action="#">
+        <p>
+          <label for = "view_log">
+            <input id = "view_log" name="view_choice" type="radio" value="View Log" checked="checked"/>
+            <span>VIEW LOG</span>
+          </label>
+        </p>
+        <p>
+          <label for = "view_pseudocode">
+            <input id = "view_pseudocode" name="view_choice" type="radio" value="View Pseudocode"/>
+            <span>VIEW PSEUDOCODE</span>
+          </label>
+        </p>
+      </form>
+    </div>
 
   <div class="output_views">
   <div class="log_section" id="log_box">
@@ -174,7 +198,7 @@
               <li><br><a href = "fehimindex3.html">Home</a></li>
           </ul>
           <a href = "https://github.com/WSU-4110/Algo-simulation">
-              <img src = "img/github.png" alt = "" style = "position:relative;width:80px;height:80px;"></a>
+            <img src = "github.png" alt = "" style = "position:relative;width:80px;height:80px;right:-100px;"></a>
       
   </div>
 </footer>
@@ -183,7 +207,6 @@
 <script src="sortingArrayClass.js"></script>
 <script src="pseudoCodeClass.js"></script>
 <script src="logBoxClass.js"></script>
-<script src="bubblesort.js"></script>
 <script src="bubblesort.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
         <script src="index.js"></script>
@@ -271,6 +294,7 @@
                 .catch((error) => {
                         const errorCode = error.code;
                         const errorMessage = error.message;
+                        alert(errorMessage);
                     });
             });
 

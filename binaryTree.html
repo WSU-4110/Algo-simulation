@@ -12,152 +12,150 @@
         <meta charset = "UTF-8">
         <meta http-equiv = "X-UA-Compatible" content = "IO-edge"></meta>
         <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
-        <title> Algorithm Simulation | Easy to learn</title>
+        <title> Binary Tree </title>
 </head>
 
-<body>
-<!-- Navbar-->
-<div class="navbar">
-  <div class="container flex">
-          <form class = "form-inline my-2 my-lg-0">
-              <ul class = "navbar-nav mr-auto">
-        <li class="logged-in">
-          <a href="#" class="white-text modal-trigger" data-target="modal-account">Account</a>
-        </li>
-        <li class="logged-in">
-          <a href="#" class="white-text" id="logout">Logout</a>
-        </li>
-        <li class="logged-out" style = "display: none;">
-          <a href="#" class="white-text modal-trigger" data-target="modal-login">Login</a>
-        </li>
-        <li class="logged-out" style = "display: none;">
-          <a href="#" class="white-text modal-trigger" data-target="modal-signup">Sign up</a>
-        </li>
-        <li class="logged-out" style = "display: none;">
-          <a href="#" class="white-text modal-trigger" data-target="modal-forgotPassword">Forgot Password?</a>
-        </li>
-      </ul>
-      </form>
-
-  </div>
+  <div class="navbar">
+    <div class="container flex">
+            <form class = "form-inline my-2 my-lg-0">
+                <ul class = "navbar-nav mr-auto">
+          <li class="logged-in">
+            <a href="#" class="white-text modal-trigger" data-target="modal-account">Account</a>
+          </li>
+          <li class="logged-in">
+            <a href="#" class="white-text" id="logout">Logout</a>
+          </li>
+          <li class="logged-out" style = "display: none;">
+            <a href="#" class="white-text modal-trigger" data-target="modal-login">Login</a>
+          </li>
+          <li class="logged-out" style = "display: none;">
+            <a href="#" class="white-text modal-trigger" data-target="modal-signup">Sign up</a>
+          </li>
+          <li class="logged-out" style = "display: none;">
+            <a href="#" class="white-text modal-trigger" data-target="modal-forgotPassword">Forgot Password?</a>
+          </li>
+        </ul>
+        </form>
+        
+    </div>
+</div>
+<div class = "logo">
+    <h1 class = "logo">Binary Tree</h1>
 </div>
 
-
-<!-- REGISTER -->
-<div id="modal-signup" class="modal">
-  <div class="modal-content">
-    <h4>Sign up</h4><br />
-    <form id="signup-form">
-      <div class="input-field">
-        <input type="email" id="signup-email" required />
-        <label for="signup-email">Email address</label>
-      </div>
-      <div class="input-field">
-        <input type="password" id="signup-password" required />
-        <label for="signup-password">Choose password</label>
-      </div>
-      <div class="input-field">
-          <input type="password" id="signup-confirmPassword" required />
-          <label for="signup-confirmPassword">Confirm password</label>
+  <!-- REGISTER -->
+  <div id="modal-signup" class="modal">
+    <div class="modal-content">
+      <h4>Sign up</h4><br />
+      <form id="signup-form">
+        <div class="input-field">
+          <input type="email" id="signup-email" required />
+          <label for="signup-email">Email address</label>
         </div>
-      <button class="btn yellow darken-2 z-depth-0">Sign up</button>
-    </form>
+        <div class="input-field">
+          <input type="password" id="signup-password" required />
+          <label for="signup-password">Choose password</label>
+        </div>
+        <div class="input-field">
+            <input type="password" id="signup-confirmPassword" required />
+            <label for="signup-confirmPassword">Confirm password</label>
+          </div>
+        <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+      </form>
+    </div>
   </div>
-</div>
 
-<!-- LOGIN MODAL WINDOW -->
+  <!-- LOGIN MODAL WINDOW -->
 
-<div id="modal-login" class="modal">
-  <div class="modal-content">
-    <h4>Login</h4><br />
-    <form id="login-form">
-      <div class="input-field">
-        <input type="email" id="login-email" required />
-        <label for="login-email">Email address</label>
-      </div>
-      <div class="input-field">
-        <input type="password" id="login-password" required />
-        <label for="login-password">Your password</label>
-      </div>
-      <button class="btn yellow darken-2 z-depth-0">Login</button>
-    </form>
+  <div id="modal-login" class="modal">
+    <div class="modal-content">
+      <h4>Login</h4><br />
+      <form id="login-form">
+        <div class="input-field">
+          <input type="email" id="login-email" required />
+          <label for="login-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="login-password" required />
+          <label for="login-password">Your password</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Login</button>
+      </form>
+    </div>
   </div>
-</div>
 
-<!-- ACCOUNT MODAL -->
-  <div id="modal-account" class="modal">
-      <div class="modal-content center-align">
-      <h4>Account details</h4><br />
-      <div class="account-details"></div>
-      </div>
-  </div>
+  <!-- ACCOUNT MODAL -->
+    <div id="modal-account" class="modal">
+        <div class="modal-content center-align">
+        <h4>Account details</h4><br />
+        <div class="account-details"></div>
+        </div>
+    </div>
 
 <!-- FORGOT PASSWORD MODAL -->
 <div id="modal-forgotPassword" class="modal">
-  <div class="modal-content">
-    <h4>Forgot Password?</h4><br />
-    <form id="forgotPassword-form">
-      <div class="input-field">
-        <input type="email" id="forgotPassword-email" required />
-        <label for="forgotPassword-email">Email address</label>
-      </div>
-      <button class="btn yellow darken-2 z-depth-0">Forgot Password</button>
-    </form>
-  <link rel = "stylesheet" href = "utilities.css">
-  <link rel="stylesheet" href="classstyle.css">
-  <link rel="stylesheet" href="binarytreestyle.css">
-
-        <meta charset = "UTF-8">
-        <meta http-equiv = "X-UA-Compatible" content = "IO-edge"></meta>
-        <meta name = "viewport" content = "width=devioce-width, initial-scale = 1.0">
-        <title> Algorithm Simulation | Easy to learn</title>
-</head>
-
-<body>
-<!-- Navbar-->
-<div class = "navbar">
-  <div class = "container flex">
-      <h1 class = "logo">Algorithm Simulations</h1>
-      <nav>
-          <form class="form-inline my-2 my-lg-0">
-              <ul class="navbar-nav mr-auto">
-                  <li class="nav-item mx-1">
-                    <a id = "userlink" class="nav-link" href="#">Username</a>
-                  </li>
-
-                  <li class="nav-item mx-1">
-                      <a id = "signoutlink" class="nav-link" href="#">Sign Out</a>
-                    </li>
-                </ul>
-
-            </form>
-      </nav>
+    <div class="modal-content">
+      <h4>Forgot Password?</h4><br />
+      <form id="forgotPassword-form">
+        <div class="input-field">
+          <input type="email" id="forgotPassword-email" required />
+          <label for="forgotPassword-email">Email address</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Forgot Password</button>
+      </form>
+    </div>
   </div>
-</div>
-
+ 
   <body>
 <div class="tree_parameters">
   <p>Tree Size:</p>
-  <input id="size_of_tree" type="range" min=5 max=15 step=1 value=10>
+  <input id="size_of_tree" type="range" min=3 max=10 step=1 value=5>
   <button id="traverse_tree">Traverse Tree</button>
-</div>
-<div class="radio_group">
-  <input type="radio" id="preorder" name="tree_traversal_choice" value="Traverse Pre-Order" checked="checked">
-  <label for="postorder">Pre Order</label>
-  <input type="radio" id="inorder" name="tree_traversal_choice" value="Traverse In-Order">
-  <label for="inorder">In Order</label>
-  <input type="radio" id="postorder" name="tree_traversal_choice" value="Traverse Post-Order">
-  <label for="postorder">Post Order</label>
 </div>
 
 <span id="tree_section"></span>
 
+
+<div class = "radio_group">
+  <form action="#">
+    <p>
+      <label for = "preorder">
+        <input name="tree_traversal_choice"  id="preorder" type="radio" value="Traverse Pre-Order" checked="checked"/>
+        <span>Pre Order</span>
+      </label>
+    </p>
+    <p>
+      <label for = "inorder">
+        <input name="tree_traversal_choice" id="inorder" type="radio" value="Traverse In-Order"/>
+        <span>In Order</span>
+      </label>
+    </p>
+    <p>
+      <label for = postorder>
+        <input name="tree_traversal_choice" id="postorder" type="radio" value="Traverse Post-Order"/>
+        <span>Post Order </span>
+    </p>    
+  </form>
+</div>
+
+
+
 <section>
-  <div class="radio_group2">
-    <input type="radio" id="view_log" name="view_choice" value="View Log" checked="checked">
-    <label for="view_log">VIEW LOG</label>
-    <input type="radio" id="view_pseudocode" name="view_choice" value="View Pseudocode">
-    <label for="view_pseudocode">VIEW PSEUDOCODE</label>
+  <div class = "radio_group2">
+    <form action="#">
+      <p>
+        <label for = "view_log">
+          <input id = "view_log" name="view_choice" type="radio" value="View Log" checked="checked"/>
+          <span>VIEW LOG</span>
+        </label>
+      </p>
+      <p>
+        <label for = "view_pseudocode">
+          <input id = "view_pseudocode" name="view_choice" type="radio" value="View Pseudocode"/>
+          <span>VIEW PSEUDOCODE</span>
+        </label>
+      </p>
+    </form>
   </div>
 
   <div class="output_views">
@@ -290,6 +288,7 @@ import { getFirestore, collection } from "https://www.gstatic.com/firebasejs/9.8
         .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
+                alert(errorMessage);
             });
     });
 
