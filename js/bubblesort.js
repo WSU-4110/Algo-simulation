@@ -4,6 +4,7 @@ array_size=array_size_input.value;
 var create_random_array=document.getElementById("create_random_array");
 var start_sorting=document.getElementById("start_sort");
 
+
 var random_array_button=document.getElementById("random_array");
 var user_array_button=document.getElementById("user_array");
 var array_integer_field=document.getElementById("array_integer");
