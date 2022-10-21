@@ -74,7 +74,7 @@ g.innerHTML="";
 // Normalize for fixed-depth.
 nodes.forEach(function(d) { d.y = d.depth * 100; });
 
-// Declare the nodes…
+// Declare the nodes.
 var node = svg.selectAll("g.node")
   .data(nodes, function(d) { return d.id || (d.id = ++i); });
 
@@ -93,8 +93,6 @@ nodeEnter.append("text")
   .attr("x", function(d) {
       return d.children || d._children ?  0 : 0; })
   .attr("dy", ".35em")
-  //.attr("text-anchor", function(d) {
-      //return d.children || d._children ? "end" : "start"; })
   .attr("text-anchor", "middle")
   .text(function(d) { return d.name; })
   .style("fill-opacity", 1);

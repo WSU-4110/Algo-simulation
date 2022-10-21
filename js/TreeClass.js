@@ -65,7 +65,6 @@ class TreeClass {
   generateEdges() {
 
     this.generatePruferSequence();
-
     this.copiedPrufer = [];
     this.orderedSet = [];
     this.treeEdges1 = [];
@@ -76,15 +75,9 @@ class TreeClass {
     var orderedSetIndex = 0;
 
     //generating copy of prufer sequence
-    console.log("Checking Copied Prufer");
     for (var i = 0; i < this.pruferSequence.length; i++) {
       this.copiedPrufer[i] = this.pruferSequence[i];
     }
-
-
-    console.log("CopiedPrufer");
-    console.log(this.copiedPrufer);
-
 
     //creating ordered set 1 - n
     for (var i = 0; i < this.numberOfNodes; i++) {
@@ -110,6 +103,7 @@ class TreeClass {
           if (this.copiedPrufer[j] == v) {
             inPruferSequence = true;
           }
+
         }
         orderedSetIndex++;
       }
@@ -121,9 +115,11 @@ class TreeClass {
       this.copiedPrufer.shift();
 
       for (var j = 0; j < this.orderedSet.length; j++) {
+
         if (this.orderedSet[j] == v) {
           this.orderedSet.splice(j, 1);
         }
+
       }
     }
     //pushes last two node edges from ordered set
@@ -148,12 +144,19 @@ class TreeClass {
     var testValue;
     var secondTestValue;
     for (var i = 0; i < this.treeEdges1.length - 1; i++) {
+
       testValue = this.treeEdges1[i];
+
       for (var j = i + 1; j < this.treeEdges1.length; j++) {
+
         secondTestValue = this.treeEdges1[j];
+
         if (testValue == secondTestValue) {
+
           if (!this.checkInteger(duplicates, testValue)) {
+
             duplicates.push(testValue);
+
           }
         }
       }
@@ -176,10 +179,12 @@ class TreeClass {
 
     //creates data array of json objects to represent tree
     for (var i = 0; i < this.treeEdges2.length; i++) {
+
       this.data[i] = {
         "name": `${this.treeEdges2[i]}`, "parent": `${this.treeEdges1[i]}`,
         "visited": "0"
       };
+
     }
 
     this.data[this.treeEdges2.length] = {
