@@ -1,3 +1,4 @@
+//DOM elements
 var array_size_input=document.getElementById('size_of_array');
 array_size=array_size_input.value;
 var create_random_array=document.getElementById("create_random_array");
@@ -41,14 +42,17 @@ var arrayDivElements=[];
 var arraySection=document.getElementById("array_section");
 arraySection.style="flex-direction:row";
 
+//sorting array object
 let sortingArray = new SortingArray(arrayBarSizes, arrayDivElements, array_size, arraySection);
 
+//sets page to show slider first and log box first
 array_integer_field.disabled=true;
 add_integer_button.disabled=true;
 pseudocode_box.style.display="none";
 
 add_integer_button.addEventListener('click', create_array_user);
 
+//for drawing random array
 random_array_button.addEventListener('change', function(e)
 {
   if (this.checked) {
@@ -63,6 +67,7 @@ random_array_button.addEventListener('change', function(e)
   }
 });
 
+//for drawing array from user input
 user_array_button.addEventListener('change', function(e)
 {
   if (this.checked) {
@@ -77,6 +82,7 @@ user_array_button.addEventListener('change', function(e)
   }
 });
 
+//to view log box
 view_log_button.addEventListener('change', function(e)
 {
   if (this.checked) {
@@ -85,6 +91,7 @@ view_log_button.addEventListener('change', function(e)
   }
 });
 
+//to view pseudocode
 view_pseudocode_button.addEventListener('change', function(e)
 {
   if (this.checked) {
@@ -97,6 +104,7 @@ view_pseudocode_button.addEventListener('change', function(e)
 create_random_array.addEventListener("click", create_array);
 array_size_input.addEventListener("input", change_array_size);
 
+//creating soring array
 function create_array()
 {
   for(var i = 0; i < array_size; i++)
@@ -110,9 +118,10 @@ function create_array()
 }
 
 
+//creating array from user input
 function create_array_user()
 {  
-array_integer_field=document.getElementById('array_integer');
+  array_integer_field=document.getElementById('array_integer');
   var userString = array_integer_field.value;
   var integer_array=userString.split(" ");
 
@@ -130,6 +139,7 @@ for(var i = 0; i < integer_array.length; i++)
   }
 }
 
+//getting size of array
 array_size = array_for_sorting.length;
   if (allIntegers)
   {
@@ -139,16 +149,19 @@ array_size = array_for_sorting.length;
   } 
 }
 
+//changing array size
 function change_array_size()
 {
   array_size=array_size_input.value;
   create_array(sortingArray);
 }
 
+//creates array on load
 window.onload=change_array_size();
 
 start_sorting.addEventListener("click", run_sorting_algorithm);
 
+//button disabled while sorting in progress
 function disable_buttons()
 {
   array_size_input.disabled=true;
@@ -164,6 +177,7 @@ function disable_buttons()
 var delay=70;
 var c_delay=0;
 
+//buttons enabled
 function enable_buttons()
 {
   setTimeout(function(){
@@ -184,6 +198,7 @@ function enable_buttons()
   },c_delay+=delay);
 }
 
+//changes created in sorting array, logbox, and pseudocode box
 function bubble_sort(pseudoCodeBox, logBox, sortingArray)
 {
   c_delay=0;

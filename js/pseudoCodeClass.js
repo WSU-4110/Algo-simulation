@@ -1,3 +1,4 @@
+//pseudoBox class to manupulate pseudocode part of web page
 class PseudoBox {
     constructor (firstPseudoCodeBox, secondPseudoCodeBox, thirdPseudoCodeBox, fourthPseudoCodeBox) {
       this.firstPseudoCodeBox = firstPseudoCodeBox;

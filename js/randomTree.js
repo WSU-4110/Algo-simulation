@@ -1,4 +1,4 @@
-
+//creating random tree for tree traversals
 function getTreeData(tree_size)
 {
     //creates random tree

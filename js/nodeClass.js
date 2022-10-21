@@ -1,3 +1,4 @@
+//basic node for binry tree, added method to create json structure from tree so it can be drawn in 
 class Node {
     constructor(value){
         this.value = value;
@@ -23,6 +24,7 @@ class Node {
       return this.left;
     }
 
+    //creates JSON structure and returns to draw tree from
     createStructure(){
 
       let information;
@@ -31,6 +33,7 @@ class Node {
       let rightChild;
       let nodeValue = this.getValue();
 
+      //case no left chile
       if(this.left == null)
       {
         leftChild = {"name": "", "parent" : nodeValue}
@@ -38,6 +41,7 @@ class Node {
         leftChild = this.left.createStructure();
       }
 
+      //case no right child
       if(this.right == null)
       {
         rightChild = {"name": "", "parent" : nodeValue}
@@ -45,7 +49,7 @@ class Node {
         rightChild = this.right.createStructure();
       }
 
-
+      //case parent null "at root"
       if(this.parent == null){
 
         parent = "null";
@@ -54,7 +58,7 @@ class Node {
         parent = this.parent.getValue();
       }
 
-
+      //case right and left child null
       if(this.right == null && this.left == null){
       information =
       {
@@ -73,9 +77,6 @@ class Node {
     }
 
       return information;
-
-
-
 }
 }
 

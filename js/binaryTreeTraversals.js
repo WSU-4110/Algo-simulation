@@ -1,4 +1,3 @@
-
 //delays for settimeouts
 var delay=450;
 var c_delay=0;
@@ -89,7 +88,6 @@ function change_tree_size(){
 //update, called every time tree needs to be redrawn
 function update(source) {
 g.innerHTML="";
-    console.log("Updating");
   // Compute the new tree layout.
   var nodes = tree.nodes(root).reverse(),
   links = tree.links(nodes);

@@ -1,3 +1,4 @@
+//for creating random binary trees for tree class
 function getTreeData(sizeOfTree){
   
     var numbers = [];
